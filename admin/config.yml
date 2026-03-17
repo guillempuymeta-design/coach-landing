@@ -2,6 +2,8 @@ backend:
   name: github
   repo: guillempuymeta-design/coach-landing
   branch: master
+  auth_type: implicit
+  client_id: Ov23liQsSVqH3Iree4KZ
 
 media_folder: "images"
 public_folder: "/images"
