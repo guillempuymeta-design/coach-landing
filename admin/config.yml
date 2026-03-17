@@ -1,0 +1,115 @@
+backend:
+  name: github
+  repo: guillempuymeta-design/coach-landing
+  branch: master
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "pagina"
+    label: "Landing Page"
+    files:
+      - name: "contenido"
+        label: "Contenido de la página"
+        file: "content.json"
+        fields:
+          - label: "HERO"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Tag superior", name: "tag", widget: "string" }
+              - { label: "Pre-título", name: "pre", widget: "string" }
+              - { label: "Título (línea 1)", name: "h1_line1", widget: "string" }
+              - { label: "Título (línea 2, acento verde)", name: "h1_line2", widget: "string" }
+              - { label: "Subtítulo", name: "sub", widget: "text" }
+
+          - label: "PASO 2 — Formulario"
+            name: "paso2"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Título", name: "h2", widget: "string" }
+              - { label: "Subtítulo", name: "sub", widget: "string" }
+
+          - label: "SISTEMA"
+            name: "sistema"
+            widget: "object"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Título", name: "h2", widget: "string" }
+              - { label: "Descripción", name: "body", widget: "text" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                fields:
+                  - { label: "Emoji", name: "ico", widget: "string" }
+                  - { label: "Título", name: "title", widget: "string" }
+                  - { label: "Descripción", name: "desc", widget: "string" }
+
+          - label: "PASOS"
+            name: "pasos"
+            widget: "object"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Título", name: "h2", widget: "string" }
+              - label: "Pasos"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Título", name: "title", widget: "string" }
+                  - { label: "Descripción", name: "desc", widget: "text" }
+
+          - label: "PARA QUIÉN"
+            name: "para_quien"
+            widget: "object"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Título", name: "h2", widget: "string" }
+              - label: "Perfecto para ti"
+                name: "yes"
+                widget: "list"
+                field: { label: "Punto", name: "text", widget: "string" }
+              - label: "No es para ti"
+                name: "no"
+                widget: "list"
+                field: { label: "Punto", name: "text", widget: "string" }
+
+          - label: "TESTIMONIOS"
+            name: "testimonios"
+            widget: "object"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Título", name: "h2", widget: "string" }
+              - label: "Testimonios"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Texto", name: "text", widget: "text" }
+                  - { label: "Nombre", name: "name", widget: "string" }
+                  - { label: "Rol", name: "role", widget: "string" }
+                  - { label: "Inicial (avatar)", name: "initial", widget: "string" }
+
+          - label: "GARANTÍA"
+            name: "garantia"
+            widget: "object"
+            fields:
+              - { label: "Emoji", name: "ico", widget: "string" }
+              - { label: "Título", name: "h2", widget: "string" }
+              - { label: "Texto", name: "body", widget: "text" }
+
+          - label: "CTA FINAL"
+            name: "cta"
+            widget: "object"
+            fields:
+              - { label: "Título (línea 1)", name: "h2_line1", widget: "string" }
+              - { label: "Título (línea 2, acento)", name: "h2_line2", widget: "string" }
+              - { label: "Subtítulo", name: "body", widget: "text" }
+              - { label: "Nota pie botón", name: "note", widget: "string" }
+
+          - label: "FOOTER"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Nombre", name: "name", widget: "string" }
+              - { label: "Copyright", name: "copy", widget: "string" }

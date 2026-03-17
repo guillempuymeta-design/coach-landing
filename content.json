@@ -1,0 +1,76 @@
+{
+  "hero": {
+    "tag": "Sesión gratuita disponible",
+    "pre": "Descubre el sistema de 3 pasos que te permite",
+    "h1_line1": "Impulsar tu proyecto",
+    "h1_line2": "con confianza y sin bloqueos",
+    "sub": "Te acompaño en tu viaje de autoconocimiento para que impulses con confianza tus proyectos. Sin miedo. Sin dudas internas."
+  },
+  "paso2": {
+    "badge": "Paso 2: Habla con nosotros",
+    "h2": "Empieza con tus datos de contacto",
+    "sub": "Rellena el formulario y te contactamos en menos de 24h"
+  },
+  "sistema": {
+    "label": "Lo que conseguirás",
+    "h2": "Un sistema diseñado para desbloquear emprendedores",
+    "body": "Porque los proyectos casi nunca se frenan por la idea — se frenan por dudas internas, miedo al error y creencias que no nos pertenecen.",
+    "features": [
+      { "ico": "🎯", "title": "Diagnóstico personalizado", "desc": "Identificamos exactamente qué bloqueos te están frenando" },
+      { "ico": "🧠", "title": "Claridad mental total", "desc": "Elimina el ruido interior y toma decisiones desde la confianza" },
+      { "ico": "⚡", "title": "Acción inmediata", "desc": "Plan de acción concreto adaptado a tu realidad y objetivos" },
+      { "ico": "🔓", "title": "Acompañamiento total", "desc": "Soporte continuo durante todo el proceso de transformación" }
+    ]
+  },
+  "pasos": {
+    "label": "El proceso",
+    "h2": "3 pasos para tus primeros resultados",
+    "items": [
+      { "title": "Análisis gratuito", "desc": "Hablamos 30 minutos para entender tu situación y qué bloqueos específicos están frenando tu avance. Sin juicios." },
+      { "title": "Estrategia a medida", "desc": "Diseñamos juntos un plan de transformación basado en PNL, constelaciones y análisis transgeneracional adaptado a ti." },
+      { "title": "Implementación y escalado", "desc": "Acompañamiento durante las 5 sesiones para que tomes acción desde la claridad y la confianza real." }
+    ]
+  },
+  "para_quien": {
+    "label": "Para quién es",
+    "h2": "Esto es perfecto para ti si...",
+    "yes": [
+      { "text": "Tienes un proyecto pero no avanza como debería" },
+      { "text": "Estás listo para trabajar tus bloqueos internos de verdad" },
+      { "text": "Quieres resultados concretos, no más teoría" },
+      { "text": "Buscas acompañamiento personalizado y cercano" },
+      { "text": "Estás dispuesto a comprometerte con el proceso" }
+    ],
+    "no": [
+      { "text": "Buscas resultados mágicos sin ningún esfuerzo" },
+      { "text": "No crees que tus bloqueos puedan ser internos" },
+      { "text": "No tienes tiempo ni ganas de dedicarle al proceso" },
+      { "text": "Solo buscas estrategias de marketing externas" },
+      { "text": "Ya tienes todo resuelto y no necesitas ayuda" }
+    ]
+  },
+  "testimonios": {
+    "label": "Casos de éxito",
+    "h2": "Resultados que hablan por sí solos",
+    "items": [
+      { "text": "Llevaba dos años con el mismo proyecto sin avanzar. En cinco sesiones entendí por qué. Hoy tengo clientes, claridad y, sobre todo, confianza.", "name": "María G.", "role": "Consultora de marketing", "initial": "M" },
+      { "text": "Nunca pensé que mis bloqueos empresariales venían de tan atrás. El análisis transgeneracional me abrió los ojos completamente.", "name": "Alejandro R.", "role": "Fundador de startup tech", "initial": "A" },
+      { "text": "Pasé de paralizarme ante cada decisión a tomar acción con una claridad que no había sentido nunca antes. Totalmente transformador.", "name": "Laura S.", "role": "Diseñadora independiente", "initial": "L" }
+    ]
+  },
+  "garantia": {
+    "ico": "🛡️",
+    "h2": "Nuestra garantía es tu tranquilidad",
+    "body": "Si en la sesión gratuita de diagnóstico no sientes que este proceso es para ti, simplemente no seguimos. Sin presiones, sin compromisos, sin coste. Tu tiempo es valioso y lo respetamos."
+  },
+  "cta": {
+    "h2_line1": "¿Listo para impulsar",
+    "h2_line2": "tu proyecto de verdad?",
+    "body": "El primer paso cuesta cero euros y cero compromisos. Solo una conversación honesta para ver si podemos avanzar juntos.",
+    "note": "Sin compromiso · Respuesta en menos de 24h"
+  },
+  "footer": {
+    "name": "Tu Nombre — Coach de Emprendedores",
+    "copy": "© 2025 · Todos los derechos reservados"
+  }
+}
