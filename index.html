@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre el sistema de 3 pasos para impulsar tu proyecto con confianza. Sesión gratuita de diagnóstico.">
+    <meta property="og:title" content="¿Sientes que tu proyecto puede ir mucho más lejos?">
+    <title>Coach de Emprendedores — Sesión Gratuita</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg:     #090909;
+            --bg2:    #111113;
+            --bg3:    #17171a;
+            --bg4:    #0d0d0f;
+            --border: rgba(255,255,255,0.07);
+            --acc:    #5bffa0;
+            --acc2:   #3de084;
+            --glow:   rgba(91,255,160,0.22);
+            --white:  #fafaf8;
+            --gray:   #888;
+            --gray2:  #444;
+            --fb: 'DM Sans', sans-serif;
+            --fi: 'Instrument Serif', Georgia, serif;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: var(--fb);
+            font-weight: 400;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrap { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+        /* ── ANIMATIONS ── */
+        .anim {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s cubic-bezier(.16,1,.3,1), transform 0.65s cubic-bezier(.16,1,.3,1);
+        }
+        .anim.fl { transform: translateX(-32px); }
+        .anim.fr { transform: translateX(32px); }
+        .anim.sc { transform: translateY(16px) scale(0.97); }
+        .anim.in { opacity: 1 !important; transform: none !important; }
+        .d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}
+        .d4{transition-delay:.28s}.d5{transition-delay:.35s}
+
+        /* ── TAG ── */
+        .tag {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: rgba(91,255,160,0.07);
+            border: 1px solid rgba(91,255,160,0.2);
+            color: var(--acc);
+            font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.07em; text-transform: uppercase;
+            padding: 6px 14px; border-radius: 100px;
+        }
+        .tag-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--acc);
+            animation: blink 2s ease infinite;
+        }
+        @keyframes blink {
+            0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.6)}
+        }
+
+        /* ── BUTTONS ── */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 17px 28px; width: 100%;
+            background: var(--acc); color: #050f08;
+            font-family: var(--fb); font-size: 0.97rem; font-weight: 800;
+            border: none; border-radius: 13px; cursor: pointer; text-decoration: none;
+            box-shadow: 0 0 0 0 var(--glow);
+            transition: all 0.22s ease;
+        }
+        .btn:hover {
+            background: var(--acc2);
+            box-shadow: 0 0 32px var(--glow), 0 4px 20px rgba(0,0,0,0.4);
+            transform: translateY(-2px);
+        }
+        .btn svg { width: 17px; height: 17px; flex-shrink: 0; }
+
+        /* ── SECTION LABELS ── */
+        .sec-label {
+            font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--acc); margin-bottom: 10px;
+        }
+        .sec-h2 {
+            font-size: clamp(1.6rem, 5.5vw, 2.5rem);
+            font-weight: 900; line-height: 1.1;
+            letter-spacing: -0.025em; margin-bottom: 12px;
+        }
+        .sec-h2 em { font-family: var(--fi); font-style: italic; font-weight: 400; }
+        .sec-body { font-size: 0.92rem; color: var(--gray); line-height: 1.75; margin-bottom: 28px; }
+
+        .divider { height: 1px; background: var(--border); }
+
+        /* ════════════════════════
+           HERO
+        ════════════════════════ */
+        #hero {
+            background: var(--bg);
+            padding: 52px 0 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-glow {
+            position: absolute; top: -200px; left: 50%;
+            transform: translateX(-50%);
+            width: 700px; height: 500px;
+            background: radial-gradient(ellipse, rgba(91,255,160,0.07) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .hero-tag { margin-bottom: 22px; }
+
+        .hero-pre {
+            font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--gray); margin-bottom: 10px;
+        }
+
+        .hero-h1 {
+            font-size: clamp(1.9rem, 8vw, 3.6rem);
+            font-weight: 900; line-height: 1.08;
+            letter-spacing: -0.03em; color: var(--white);
+            margin-bottom: 16px;
+        }
+        .hero-h1 em { font-family: var(--fi); font-style: italic; font-weight: 400; color: var(--acc); }
+
+        .hero-sub {
+            font-size: clamp(0.93rem, 2.6vw, 1.05rem);
+            color: var(--gray); line-height: 1.72;
+            margin: 0 auto 28px; max-width: 500px;
+        }
+
+        /* VSL */
+        .vsl-wrap { margin: 0 auto; max-width: 620px; padding: 0 0; }
+        .vsl-box {
+            position: relative; width: 100%; padding-top: 56.25%;
+            background: var(--bg3);
+            border-radius: 18px; overflow: hidden;
+            border: 1px solid rgba(91,255,160,0.1);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+            cursor: pointer;
+        }
+        .vsl-inner {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+            background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(91,255,160,0.05) 0%, transparent 70%);
+        }
+        .vsl-play {
+            width: 68px; height: 68px; border-radius: 50%;
+            background: var(--acc);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 0 14px rgba(91,255,160,0.1), 0 0 0 28px rgba(91,255,160,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .vsl-box:hover .vsl-play {
+            transform: scale(1.08);
+            box-shadow: 0 0 0 16px rgba(91,255,160,0.14), 0 0 40px rgba(91,255,160,0.3);
+        }
+        .vsl-play svg { width: 24px; height: 24px; color: #050f08; margin-left: 3px; }
+        .vsl-lbl { font-size: 0.74rem; color: var(--gray2); letter-spacing: 0.05em; }
+
+        /* Social bar */
+        .social-bar {
+            display: flex; align-items: center; justify-content: center;
+            gap: 24px; flex-wrap: wrap;
+            padding: 18px 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 0;
+        }
+        .social-item { display: flex; align-items: center; gap: 7px; font-size: 0.78rem; color: var(--gray); }
+        .social-item strong { color: var(--white); }
+        .stars-row { color: #f5c842; font-size: 0.75rem; letter-spacing: 1px; }
+
+        /* ════════════════════════
+           PASO 2 — FORM
+        ════════════════════════ */
+        #paso2 {
+            background: var(--bg2);
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .paso-badge {
+            display: inline-block;
+            background: rgba(91,255,160,0.1);
+            border: 1px solid rgba(91,255,160,0.25);
+            color: var(--acc);
+            font-size: 0.65rem; font-weight: 800;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px;
+            margin-bottom: 14px;
+        }
+
+        .paso2-h2 {
+            font-size: clamp(1.3rem, 4.5vw, 2rem);
+            font-weight: 900; line-height: 1.15;
+            letter-spacing: -0.02em; margin-bottom: 6px;
+        }
+        .paso2-sub { font-size: 0.87rem; color: var(--gray); margin-bottom: 24px; }
+
+        .form-card {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 18px; padding: 26px 22px;
+            text-align: left;
+            position: relative; overflow: hidden;
+        }
+        .form-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--acc), transparent);
+        }
+
+        .fgroup { margin-bottom: 13px; }
+        .flabel { display: block; font-size: 0.7rem; font-weight: 600; color: var(--gray); margin-bottom: 6px; }
+        .finput {
+            width: 100%; background: var(--bg);
+            border: 1px solid rgba(255,255,255,0.08); color: var(--white);
+            font-family: var(--fb); font-size: 0.95rem;
+            padding: 13px 14px; border-radius: 11px; outline: none;
+            -webkit-appearance: none; transition: border-color 0.22s;
+        }
+        .finput::placeholder { color: var(--gray2); }
+        .finput:focus { border-color: rgba(91,255,160,0.4); }
+        .fsubmit { margin-top: 18px; }
+        .form-note {
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            margin-top: 12px; font-size: 0.72rem; color: var(--gray);
+        }
+        .form-note svg { width: 12px; height: 12px; color: var(--acc); flex-shrink: 0; }
+
+        .success { display: none; text-align: center; padding: 36px 0; }
+        .success.show { display: block; }
+        .s-ring {
+            width: 54px; height: 54px; border-radius: 50%;
+            background: rgba(91,255,160,0.08); border: 1px solid rgba(91,255,160,0.3);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 14px; font-size: 1.4rem; color: var(--acc);
+        }
+        .s-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+        .s-msg { font-size: 0.85rem; color: var(--gray); }
+
+        /* ════════════════════════
+           SISTEMA — dark
+        ════════════════════════ */
+        #sistema { background: var(--bg); padding: 64px 0; text-align: center; }
+
+        .features { display: grid; grid-template-columns: 1fr; gap: 12px; text-align: left; }
+        .feat {
+            display: flex; gap: 14px; align-items: flex-start;
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 14px; padding: 18px;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+        .feat:hover { border-color: rgba(91,255,160,0.18); transform: translateY(-2px); }
+        .feat-ico {
+            width: 40px; height: 40px; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; flex-shrink: 0;
+            background: var(--bg3); border: 1px solid var(--border);
+        }
+        .feat-title { font-size: 0.93rem; font-weight: 700; margin-bottom: 4px; }
+        .feat-desc { font-size: 0.81rem; color: var(--gray); line-height: 1.55; }
+
+        /* ════════════════════════
+           PASOS
+        ════════════════════════ */
+        #pasos { background: var(--bg2); padding: 64px 0; text-align: center; }
+
+        .steps { display: flex; flex-direction: column; gap: 10px; margin-top: 32px; text-align: left; }
+        .step {
+            display: flex; gap: 16px; align-items: flex-start;
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: 14px; padding: 20px;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+        .step:hover { border-color: rgba(91,255,160,0.2); transform: translateX(4px); }
+        .step-n {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: rgba(91,255,160,0.08); border: 1px solid rgba(91,255,160,0.18);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.78rem; font-weight: 800; color: var(--acc); flex-shrink: 0;
+        }
+        .step-title { font-size: 0.93rem; font-weight: 800; margin-bottom: 4px; }
+        .step-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
+
+        /* ════════════════════════
+           PARA QUIÉN
+        ════════════════════════ */
+        #para-quien { background: var(--bg); padding: 64px 0; text-align: center; }
+
+        .fit-grid {
+            display: grid; grid-template-columns: 1fr;
+            gap: 14px; margin-top: 32px; text-align: left;
+        }
+        .fit-col {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 16px; padding: 22px 20px;
+        }
+        .fit-col.yes { border-color: rgba(91,255,160,0.2); }
+        .fit-col.no  { border-color: rgba(239,68,68,0.15); }
+
+        .fit-header {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 0.88rem; font-weight: 800; margin-bottom: 16px;
+        }
+        .fit-badge {
+            width: 26px; height: 26px; border-radius: 7px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; font-weight: 800;
+        }
+        .fit-badge.yes { background: rgba(91,255,160,0.12); color: var(--acc); }
+        .fit-badge.no  { background: rgba(239,68,68,0.1); color: #ef4444; }
+
+        .fit-items { display: flex; flex-direction: column; gap: 9px; }
+        .fit-item {
+            display: flex; align-items: flex-start; gap: 9px;
+            font-size: 0.82rem; color: var(--gray); line-height: 1.55;
+        }
+        .fit-item .ico { flex-shrink: 0; margin-top: 1px; }
+
+        /* ════════════════════════
+           TESTIMONIOS
+        ════════════════════════ */
+        #testimonios { background: var(--bg2); padding: 64px 0; text-align: center; }
+
+        .testi-list { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; text-align: left; }
+        .testi {
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: 16px; padding: 22px;
+        }
+        .testi-stars { display: flex; gap: 2px; margin-bottom: 10px; }
+        .star { color: #f5c842; font-size: 0.8rem; }
+        .testi-text {
+            font-family: var(--fi); font-style: italic;
+            font-size: 0.98rem; color: var(--white); line-height: 1.6; margin-bottom: 16px;
+        }
+        .testi-who { display: flex; align-items: center; gap: 10px; }
+        .testi-av {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(91,255,160,0.1); border: 1px solid rgba(91,255,160,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.82rem; font-weight: 800; color: var(--acc); flex-shrink: 0;
+        }
+        .testi-name { font-size: 0.82rem; font-weight: 700; }
+        .testi-role { font-size: 0.72rem; color: var(--gray); }
+
+        /* ════════════════════════
+           GARANTÍA
+        ════════════════════════ */
+        #garantia {
+            background: var(--bg4);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 56px 0; text-align: center;
+        }
+        .garantia-ico { font-size: 2.4rem; margin-bottom: 14px; }
+        .garantia-h2 {
+            font-size: clamp(1.4rem, 4.5vw, 2rem);
+            font-weight: 900; color: var(--white); line-height: 1.15; margin-bottom: 12px;
+        }
+        .garantia-h2 em { font-family: var(--fi); font-style: italic; font-weight: 400; color: var(--acc); }
+        .garantia-body { font-size: 0.9rem; color: var(--gray); line-height: 1.75; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+        /* ════════════════════════
+           CTA FINAL
+        ════════════════════════ */
+        #cta-final {
+            background: var(--bg);
+            padding: 72px 0 88px; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .cta-glow {
+            position: absolute; bottom: -100px; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 400px;
+            background: radial-gradient(ellipse, rgba(91,255,160,0.06) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .cta-h2 {
+            font-size: clamp(1.7rem, 6vw, 2.8rem);
+            font-weight: 900; color: var(--white);
+            line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 12px;
+        }
+        .cta-h2 em { font-family: var(--fi); font-style: italic; font-weight: 400; color: var(--acc); }
+        .cta-body { font-size: 0.9rem; color: var(--gray); margin-bottom: 28px; line-height: 1.7; }
+        .cta-box { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+        .cta-note { font-size: 0.7rem; color: var(--gray2); }
+
+        /* trust dots */
+        .trust-row {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            font-size: 0.75rem; color: var(--gray);
+        }
+        .av-row { display: flex; }
+        .av {
+            width: 24px; height: 24px; border-radius: 50%;
+            background: var(--bg3); border: 2px solid var(--bg);
+            margin-left: -7px; display: flex; align-items: center; justify-content: center;
+            font-size: 0.6rem; font-weight: 800; color: var(--acc);
+        }
+        .av:first-child { margin-left: 0; }
+
+        /* ════════════════════════
+           FOOTER
+        ════════════════════════ */
+        footer {
+            background: var(--bg4); border-top: 1px solid var(--border);
+            padding: 26px 20px; text-align: center;
+        }
+        .f-name { font-weight: 700; font-size: 0.88rem; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+        .f-copy { font-size: 0.64rem; color: var(--gray2); }
+
+        /* ════════════════════════
+           DESKTOP
+        ════════════════════════ */
+        @media (min-width: 620px) {
+            .features { grid-template-columns: repeat(2,1fr); }
+            .fit-grid  { grid-template-columns: repeat(2,1fr); }
+            .testi-list { display: grid; grid-template-columns: repeat(3,1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ████ HERO ████ -->
+<section id="hero">
+    <div class="hero-glow"></div>
+    <div class="wrap">
+        <div class="hero-tag anim"><span class="tag"><span class="tag-dot"></span>Sesión gratuita disponible</span></div>
+        <p class="hero-pre anim d1">Descubre el sistema de 3 pasos que te permite</p>
+        <h1 class="hero-h1 anim d2">
+            Impulsar tu proyecto<br>con <em>confianza y sin bloqueos</em>
+        </h1>
+        <p class="hero-sub anim d3">
+            Te acompaño en tu viaje de autoconocimiento para que impulses con confianza tus proyectos. Sin miedo. Sin dudas internas.
+        </p>
+
+        <!-- VSL -->
+        <div class="vsl-wrap anim sc d3">
+            <div class="vsl-box">
+                <div class="vsl-inner">
+                    <div class="vsl-play">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="vsl-lbl">Ver presentación — próximamente</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-bar anim d4">
+        <div class="social-item"><span class="stars-row">★★★★★</span> <strong>+200</strong> emprendedores acompañados</div>
+        <div class="social-item">⏱ <strong>Resultados</strong> desde la 1ª sesión</div>
+        <div class="social-item">🛡 <strong>Sin</strong> compromiso</div>
+    </div>
+</section>
+
+<!-- ████ PASO 2 ████ -->
+<section id="paso2">
+    <div class="wrap">
+        <div class="paso-badge anim">Paso 2: Habla con nosotros</div>
+        <h2 class="paso2-h2 anim d1">Empieza con tus datos de contacto</h2>
+        <p class="paso2-sub anim d2">Rellena el formulario y te contactamos en menos de 24h</p>
+
+        <div class="form-card anim sc d2">
+            <form id="main-form" novalidate>
+                <div class="fgroup">
+                    <label class="flabel" for="nombre">Nombre completo</label>
+                    <input class="finput" type="text" id="nombre" name="nombre" placeholder="Tu nombre y apellidos" required>
+                </div>
+                <div class="fgroup">
+                    <label class="flabel" for="email">Email</label>
+                    <input class="finput" type="email" id="email" name="email" placeholder="tu@email.com" required>
+                </div>
+                <div class="fgroup">
+                    <label class="flabel" for="tel">Teléfono</label>
+                    <input class="finput" type="tel" id="tel" name="tel" placeholder="+34 600 000 000" required>
+                </div>
+                <div class="fsubmit">
+                    <button type="submit" class="btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        Reservar mi sesión gratuita
+                    </button>
+                </div>
+                <div class="form-note">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Sin compromiso · Tus datos están seguros
+                </div>
+            </form>
+            <div class="success" id="success-msg">
+                <div class="s-ring">✓</div>
+                <div class="s-title">¡Gracias!</div>
+                <p class="s-msg">Me pondré en contacto contigo en menos de 24 horas</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ████ SISTEMA ████ -->
+<section id="sistema">
+    <div class="wrap">
+        <p class="sec-label anim">Lo que conseguirás</p>
+        <h2 class="sec-h2 anim d1">Un sistema diseñado para<br><em>desbloquear emprendedores</em></h2>
+        <p class="sec-body anim d2">Porque los proyectos casi nunca se frenan por la idea — se frenan por dudas internas, miedo al error y creencias que no nos pertenecen.</p>
+
+        <div class="features">
+            <div class="feat anim fl d1">
+                <div class="feat-ico">🎯</div>
+                <div><div class="feat-title">Diagnóstico personalizado</div><div class="feat-desc">Identificamos exactamente qué bloqueos te están frenando</div></div>
+            </div>
+            <div class="feat anim fl d2">
+                <div class="feat-ico">🧠</div>
+                <div><div class="feat-title">Claridad mental total</div><div class="feat-desc">Elimina el ruido interior y toma decisiones desde la confianza</div></div>
+            </div>
+            <div class="feat anim fr d1">
+                <div class="feat-ico">⚡</div>
+                <div><div class="feat-title">Acción inmediata</div><div class="feat-desc">Plan de acción concreto adaptado a tu realidad y objetivos</div></div>
+            </div>
+            <div class="feat anim fr d2">
+                <div class="feat-ico">🔓</div>
+                <div><div class="feat-title">Acompañamiento total</div><div class="feat-desc">Soporte continuo durante todo el proceso de transformación</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ████ PASOS ████ -->
+<section id="pasos">
+    <div class="wrap">
+        <p class="sec-label anim">El proceso</p>
+        <h2 class="sec-h2 anim d1">3 pasos para tus<br>primeros resultados</h2>
+
+        <div class="steps">
+            <div class="step anim fl d1">
+                <div class="step-n">01</div>
+                <div><div class="step-title">Análisis gratuito</div><p class="step-desc">Hablamos 30 minutos para entender tu situación y qué bloqueos específicos están frenando tu avance. Sin juicios.</p></div>
+            </div>
+            <div class="step anim fl d2">
+                <div class="step-n">02</div>
+                <div><div class="step-title">Estrategia a medida</div><p class="step-desc">Diseñamos juntos un plan de transformación basado en PNL, constelaciones y análisis transgeneracional adaptado a ti.</p></div>
+            </div>
+            <div class="step anim fl d3">
+                <div class="step-n">03</div>
+                <div><div class="step-title">Implementación y escalado</div><p class="step-desc">Acompañamiento durante las 5 sesiones para que tomes acción desde la claridad y la confianza real.</p></div>
+            </div>
+        </div>
+
+        <div class="anim d4" style="margin-top:32px;">
+            <a href="#paso2" class="btn" style="max-width:440px;margin:0 auto;display:flex;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                Quiero una sesión gratuita de diagnóstico
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ████ PARA QUIÉN ████ -->
+<section id="para-quien">
+    <div class="wrap">
+        <p class="sec-label anim">Para quién es</p>
+        <h2 class="sec-h2 anim d1">Esto es perfecto para ti si...</h2>
+
+        <div class="fit-grid">
+            <div class="fit-col yes anim sc d2">
+                <div class="fit-header"><div class="fit-badge yes">✓</div>Perfecto para ti</div>
+                <div class="fit-items">
+                    <div class="fit-item"><span class="ico">✅</span><span>Tienes un proyecto pero no avanza como debería</span></div>
+                    <div class="fit-item"><span class="ico">✅</span><span>Estás listo para trabajar tus bloqueos internos de verdad</span></div>
+                    <div class="fit-item"><span class="ico">✅</span><span>Quieres resultados concretos, no más teoría</span></div>
+                    <div class="fit-item"><span class="ico">✅</span><span>Buscas acompañamiento personalizado y cercano</span></div>
+                    <div class="fit-item"><span class="ico">✅</span><span>Estás dispuesto a comprometerte con el proceso</span></div>
+                </div>
+            </div>
+            <div class="fit-col no anim sc d3">
+                <div class="fit-header"><div class="fit-badge no">✗</div>No es para ti</div>
+                <div class="fit-items">
+                    <div class="fit-item"><span class="ico">❌</span><span>Buscas resultados mágicos sin ningún esfuerzo</span></div>
+                    <div class="fit-item"><span class="ico">❌</span><span>No crees que tus bloqueos puedan ser internos</span></div>
+                    <div class="fit-item"><span class="ico">❌</span><span>No tienes tiempo ni ganas de dedicarle al proceso</span></div>
+                    <div class="fit-item"><span class="ico">❌</span><span>Solo buscas estrategias de marketing externas</span></div>
+                    <div class="fit-item"><span class="ico">❌</span><span>Ya tienes todo resuelto y no necesitas ayuda</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ████ TESTIMONIOS ████ -->
+<section id="testimonios">
+    <div class="wrap">
+        <p class="sec-label anim">Casos de éxito</p>
+        <h2 class="sec-h2 anim d1">Resultados que hablan<br>por sí solos</h2>
+
+        <div class="testi-list">
+            <div class="testi anim sc d1">
+                <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                <p class="testi-text">"Llevaba dos años con el mismo proyecto sin avanzar. En cinco sesiones entendí por qué. Hoy tengo clientes, claridad y, sobre todo, confianza."</p>
+                <div class="testi-who"><div class="testi-av">M</div><div><div class="testi-name">María G.</div><div class="testi-role">Consultora de marketing</div></div></div>
+            </div>
+            <div class="testi anim sc d2">
+                <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                <p class="testi-text">"Nunca pensé que mis bloqueos empresariales venían de tan atrás. El análisis transgeneracional me abrió los ojos completamente."</p>
+                <div class="testi-who"><div class="testi-av">A</div><div><div class="testi-name">Alejandro R.</div><div class="testi-role">Fundador de startup tech</div></div></div>
+            </div>
+            <div class="testi anim sc d3">
+                <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                <p class="testi-text">"Pasé de paralizarme ante cada decisión a tomar acción con una claridad que no había sentido nunca antes. Totalmente transformador."</p>
+                <div class="testi-who"><div class="testi-av">L</div><div><div class="testi-name">Laura S.</div><div class="testi-role">Diseñadora independiente</div></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ████ GARANTÍA ████ -->
+<section id="garantia">
+    <div class="wrap">
+        <div class="garantia-ico anim">🛡️</div>
+        <h2 class="garantia-h2 anim d1">Nuestra garantía es<br><em>tu tranquilidad</em></h2>
+        <p class="garantia-body anim d2">Si en la sesión gratuita de diagnóstico no sientes que este proceso es para ti, simplemente no seguimos. Sin presiones, sin compromisos, sin coste. Tu tiempo es valioso y lo respetamos.</p>
+        <div class="anim d3" style="max-width:420px;margin:0 auto;">
+            <a href="#paso2" class="btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                Reserva tu análisis gratuito
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ████ CTA FINAL ████ -->
+<section id="cta-final">
+    <div class="cta-glow"></div>
+    <div class="wrap">
+        <h2 class="cta-h2 anim">¿Listo para impulsar<br>tu proyecto <em>de verdad?</em></h2>
+        <p class="cta-body anim d1">El primer paso cuesta cero euros y cero compromisos. Solo una conversación honesta para ver si podemos avanzar juntos.</p>
+
+        <div class="cta-box anim d2">
+            <a href="#paso2" class="btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                Quiero una sesión gratuita de diagnóstico
+            </a>
+            <div class="trust-row">
+                <div class="av-row">
+                    <div class="av">M</div><div class="av">A</div>
+                    <div class="av">L</div><div class="av">+</div>
+                </div>
+                <span>+200 emprendedores ya han dado el paso</span>
+            </div>
+            <p class="cta-note">Sin compromiso · Respuesta en menos de 24h</p>
+        </div>
+    </div>
+</section>
+
+<!-- ████ FOOTER ████ -->
+<footer>
+    <p class="f-name">Tu Nombre — Coach de Emprendedores</p>
+    <p class="f-copy">© 2025 · Todos los derechos reservados</p>
+</footer>
+
+<script>
+/* ANIMATIONS */
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.anim').forEach(el => obs.observe(el));
+document.querySelectorAll('#hero .anim').forEach((el,i) => setTimeout(() => el.classList.add('in'), 80 + i*120));
+
+/* FORM */
+document.getElementById('main-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (!document.getElementById('nombre').value.trim() ||
+        !document.getElementById('email').value.trim() ||
+        !document.getElementById('tel').value.trim()) return;
+    const btn = this.querySelector('button[type=submit]');
+    btn.textContent = 'Enviando...'; btn.disabled = true;
+    setTimeout(() => {
+        this.style.display = 'none';
+        document.getElementById('success-msg').classList.add('show');
+    }, 700);
+});
+
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+});
+</script>
+</body>
+</html>
