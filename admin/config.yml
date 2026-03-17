@@ -2,8 +2,8 @@ backend:
   name: github
   repo: guillempuymeta-design/coach-landing
   branch: master
-  auth_type: implicit
-  client_id: Ov23liQsSVqH3Iree4KZ
+  base_url: https://coach-landing-delta.vercel.app
+  auth_endpoint: api/auth
 
 media_folder: "images"
 public_folder: "/images"
