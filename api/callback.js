@@ -1,12 +1,8 @@
 export default async function handler(req, res) {
   const { code, error } = req.query;
 
-  if (error) {
-    return res.redirect('/admin/?error=' + encodeURIComponent(error));
-  }
-
-  if (!code) {
-    return res.redirect('/admin/?error=no_code');
+  if (error || !code) {
+    return res.redirect('/admin/?error=' + encodeURIComponent(error || 'no_code'));
   }
 
   try {
@@ -26,7 +22,18 @@ export default async function handler(req, res) {
       return res.redirect('/admin/?error=' + encodeURIComponent(data.error || 'token_failed'));
     }
 
-    res.redirect('/admin/#token=' + encodeURIComponent(data.access_token));
+    const safeToken = JSON.stringify(data.access_token);
+
+    res.setHeader('Content-Type', 'text/html');
+    res.send(`<!DOCTYPE html>
+<html><head><title>Autenticando...</title></head>
+<body>
+<script>
+  localStorage.setItem('gh_admin_token', ${safeToken});
+  window.location.href = '/admin/';
+</script>
+</body></html>`);
+
   } catch (err) {
     res.redirect('/admin/?error=server_error');
   }
