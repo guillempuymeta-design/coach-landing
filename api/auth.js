@@ -1,7 +1,5 @@
 export default function handler(req, res) {
-  const { host } = req.headers;
-  const protocol = host.includes('localhost') ? 'http' : 'https';
-  const redirectUri = `${protocol}://${host}/api/callback`;
+  const redirectUri = 'https://coach-landing-delta.vercel.app/api/callback';
 
   const params = new URLSearchParams({
     client_id: process.env.GITHUB_CLIENT_ID,
