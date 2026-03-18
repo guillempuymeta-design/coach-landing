@@ -1,27 +1,336 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel de Edición</title>
-  <script>
-    // Handle OAuth redirect: token passed via URL hash
-    (function() {
-      var hash = window.location.hash;
-      if (hash && hash.indexOf('token=') !== -1) {
-        var token = decodeURIComponent(hash.replace('#token=', ''));
-        if (token) {
-          localStorage.setItem('netlify-cms-user', JSON.stringify({
-            token: token,
-            backendName: 'github'
-          }));
-          window.history.replaceState({}, '', '/admin/');
-        }
-      }
-    })();
-  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Panel de Edición</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: #242424;
+      --text: #f0f0f0;
+      --muted: #888;
+      --accent: #5bffa0;
+      --danger: #ff5b5b;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+
+    /* LOGIN */
+    #login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+    .login-box { text-align: center; max-width: 360px; width: 100%; }
+    .login-box h1 { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+    .login-box p { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+    .btn-github {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent); color: #000; border: none;
+      padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: 600;
+      font-family: inherit; cursor: pointer; transition: opacity 0.2s;
+    }
+    .btn-github:hover { opacity: 0.85; }
+    .error-msg { color: var(--danger); font-size: 13px; margin-top: 16px; min-height: 20px; }
+
+    /* EDITOR */
+    #editor-screen { display: none; }
+    .top-bar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 12px 24px; display: flex; align-items: center; gap: 12px;
+    }
+    .top-bar h1 { font-size: 16px; font-weight: 600; flex: 1; }
+    .top-bar a { font-size: 13px; color: var(--muted); text-decoration: none; }
+    .top-bar a:hover { color: var(--accent); }
+    .btn { border: none; padding: 8px 18px; border-radius: 6px; font-size: 14px; font-weight: 500; font-family: inherit; cursor: pointer; transition: opacity 0.2s; }
+    .btn:hover { opacity: 0.85; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-save { background: var(--accent); color: #000; }
+    .btn-logout { background: var(--border); color: var(--muted); }
+
+    .content { max-width: 800px; margin: 0 auto; padding: 32px 24px 80px; }
+
+    .section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+    .section-header { padding: 14px 20px; border-bottom: 1px solid transparent; cursor: pointer; display: flex; align-items: center; justify-content: space-between; user-select: none; }
+    .section.open .section-header { border-bottom-color: var(--border); }
+    .section-header h2 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+    .section-header .chevron { color: var(--muted); transition: transform 0.2s; font-size: 11px; }
+    .section.open .section-header .chevron { transform: rotate(180deg); }
+    .section-body { padding: 20px; display: none; }
+    .section.open .section-body { display: block; }
+
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+    .field label { display: block; font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .field input, .field textarea {
+      width: 100%; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 6px; padding: 9px 12px; color: var(--text);
+      font-family: inherit; font-size: 14px; outline: none; transition: border-color 0.2s;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--accent); }
+    .field textarea { resize: vertical; min-height: 76px; }
+
+    .array-item { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 14px; margin-bottom: 10px; }
+    .array-item:last-child { margin-bottom: 0; }
+    .array-label { font-size: 11px; color: var(--accent); font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .group-label { font-size: 11px; color: var(--muted); font-weight: 700; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; padding: 12px 20px;
+      border-radius: 8px; font-size: 14px; font-weight: 500;
+      transform: translateY(80px); opacity: 0; transition: all 0.3s; z-index: 1000;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { background: var(--accent); color: #000; }
+    .toast.error { background: var(--danger); color: #fff; }
+    .loading { text-align: center; padding: 60px 24px; color: var(--muted); }
+  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@3.3.3/dist/decap-cms.js"></script>
+
+<div id="login-screen">
+  <div class="login-box">
+    <h1>Panel de Edición</h1>
+    <p>Accede con tu cuenta de GitHub para editar el contenido de la landing page</p>
+    <button class="btn-github" onclick="loginWithGitHub()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      Acceder con GitHub
+    </button>
+    <p class="error-msg" id="error-msg"></p>
+  </div>
+</div>
+
+<div id="editor-screen">
+  <div class="top-bar">
+    <h1>Panel de Edición</h1>
+    <a href="https://coach-landing-delta.vercel.app" target="_blank">Ver web →</a>
+    <button class="btn btn-save" id="save-btn" onclick="saveContent()">Guardar cambios</button>
+    <button class="btn btn-logout" onclick="logout()">Salir</button>
+  </div>
+  <div class="content" id="editor-content">
+    <div class="loading">Cargando contenido...</div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const REPO = 'guillempuymeta-design/coach-landing';
+  const FILE = 'content.json';
+  const BRANCH = 'master';
+  const TOKEN_KEY = 'gh_admin_token';
+  let currentSha = null;
+
+  (function init() {
+    const hash = location.hash;
+    if (hash.startsWith('#token=')) {
+      const token = decodeURIComponent(hash.slice(7));
+      if (token) localStorage.setItem(TOKEN_KEY, token);
+      history.replaceState({}, '', '/admin/');
+    }
+    const errorParam = new URLSearchParams(location.search).get('error');
+    if (errorParam) {
+      document.getElementById('error-msg').textContent = 'Error: ' + decodeURIComponent(errorParam);
+    }
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (token) loadEditor(token);
+  })();
+
+  function loginWithGitHub() {
+    location.href = '/api/auth';
+  }
+
+  function logout() {
+    localStorage.removeItem(TOKEN_KEY);
+    location.href = '/admin/';
+  }
+
+  async function loadEditor(token) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('editor-screen').style.display = 'block';
+    try {
+      const resp = await fetch(
+        `https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}`,
+        { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' } }
+      );
+      if (resp.status === 401) { logout(); return; }
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const data = await resp.json();
+      currentSha = data.sha;
+      const content = JSON.parse(atob(data.content.replace(/\n/g, '')));
+      renderForm(content);
+    } catch (e) {
+      document.getElementById('editor-content').innerHTML =
+        `<div class="loading">Error al cargar: ${e.message}</div>`;
+    }
+  }
+
+  function f(label, key, value) {
+    const safe = (value || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    return `<div class="field"><label>${label}</label><input type="text" data-key="${key}" value="${safe}"></div>`;
+  }
+
+  function ta(label, key, value) {
+    const safe = (value || '').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+    return `<div class="field"><label>${label}</label><textarea data-key="${key}">${safe}</textarea></div>`;
+  }
+
+  function sec(title, id, inner) {
+    return `<div class="section" id="sec-${id}">
+      <div class="section-header" onclick="this.parentElement.classList.toggle('open')">
+        <h2>${title}</h2><span class="chevron">▼</span>
+      </div>
+      <div class="section-body">${inner}</div>
+    </div>`;
+  }
+
+  function renderForm(c) {
+    const html = [
+      sec('HERO', 'hero', `
+        ${f('Tag superior', 'hero.tag', c.hero.tag)}
+        ${f('Pre-título', 'hero.pre', c.hero.pre)}
+        ${f('Título línea 1', 'hero.h1_line1', c.hero.h1_line1)}
+        ${f('Título línea 2 (acento verde)', 'hero.h1_line2', c.hero.h1_line2)}
+        ${ta('Subtítulo', 'hero.sub', c.hero.sub)}
+      `),
+      sec('FORMULARIO — Paso 2', 'paso2', `
+        ${f('Badge', 'paso2.badge', c.paso2.badge)}
+        ${f('Título', 'paso2.h2', c.paso2.h2)}
+        ${f('Subtítulo', 'paso2.sub', c.paso2.sub)}
+      `),
+      sec('SISTEMA', 'sistema', `
+        ${f('Label', 'sistema.label', c.sistema.label)}
+        ${f('Título', 'sistema.h2', c.sistema.h2)}
+        ${ta('Descripción', 'sistema.body', c.sistema.body)}
+        <div class="group-label">Features</div>
+        ${c.sistema.features.map((item, i) => `
+          <div class="array-item">
+            <div class="array-label">Feature ${i+1}</div>
+            <div class="grid-2">${f('Emoji', `sistema.features.${i}.ico`, item.ico)}${f('Título', `sistema.features.${i}.title`, item.title)}</div>
+            ${f('Descripción', `sistema.features.${i}.desc`, item.desc)}
+          </div>`).join('')}
+      `),
+      sec('PASOS', 'pasos', `
+        ${f('Label', 'pasos.label', c.pasos.label)}
+        ${f('Título', 'pasos.h2', c.pasos.h2)}
+        ${c.pasos.items.map((item, i) => `
+          <div class="array-item">
+            <div class="array-label">Paso ${i+1}</div>
+            ${f('Título', `pasos.items.${i}.title`, item.title)}
+            ${ta('Descripción', `pasos.items.${i}.desc`, item.desc)}
+          </div>`).join('')}
+      `),
+      sec('PARA QUIÉN', 'para_quien', `
+        ${f('Label', 'para_quien.label', c.para_quien.label)}
+        ${f('Título', 'para_quien.h2', c.para_quien.h2)}
+        <div class="group-label">✅ Perfecto para ti</div>
+        ${c.para_quien.yes.map((item, i) => `
+          <div class="array-item">${f('Punto ' + (i+1), `para_quien.yes.${i}.text`, item.text)}</div>`).join('')}
+        <div class="group-label">❌ No es para ti</div>
+        ${c.para_quien.no.map((item, i) => `
+          <div class="array-item">${f('Punto ' + (i+1), `para_quien.no.${i}.text`, item.text)}</div>`).join('')}
+      `),
+      sec('TESTIMONIOS', 'testimonios', `
+        ${f('Label', 'testimonios.label', c.testimonios.label)}
+        ${f('Título', 'testimonios.h2', c.testimonios.h2)}
+        ${c.testimonios.items.map((item, i) => `
+          <div class="array-item">
+            <div class="array-label">Testimonio ${i+1}</div>
+            ${ta('Texto', `testimonios.items.${i}.text`, item.text)}
+            <div class="grid-2">${f('Nombre', `testimonios.items.${i}.name`, item.name)}${f('Rol', `testimonios.items.${i}.role`, item.role)}</div>
+            ${f('Inicial (avatar)', `testimonios.items.${i}.initial`, item.initial)}
+          </div>`).join('')}
+      `),
+      sec('GARANTÍA', 'garantia', `
+        ${f('Emoji', 'garantia.ico', c.garantia.ico)}
+        ${f('Título', 'garantia.h2', c.garantia.h2)}
+        ${ta('Texto', 'garantia.body', c.garantia.body)}
+      `),
+      sec('CTA FINAL', 'cta', `
+        ${f('Título línea 1', 'cta.h2_line1', c.cta.h2_line1)}
+        ${f('Título línea 2 (acento)', 'cta.h2_line2', c.cta.h2_line2)}
+        ${ta('Subtítulo', 'cta.body', c.cta.body)}
+        ${f('Nota pie botón', 'cta.note', c.cta.note)}
+      `),
+      sec('FOOTER', 'footer', `
+        ${f('Nombre', 'footer.name', c.footer.name)}
+        ${f('Copyright', 'footer.copy', c.footer.copy)}
+      `)
+    ].join('');
+
+    document.getElementById('editor-content').innerHTML = html;
+    document.querySelector('.section').classList.add('open');
+  }
+
+  function setNested(obj, path, value) {
+    const parts = path.split('.');
+    let curr = obj;
+    for (let i = 0; i < parts.length - 1; i++) {
+      const k = parts[i];
+      if (curr[k] === undefined || curr[k] === null) {
+        curr[k] = isNaN(Number(parts[i + 1])) ? {} : [];
+      }
+      curr = curr[k];
+    }
+    curr[parts[parts.length - 1]] = value;
+  }
+
+  function getFormData() {
+    const content = {};
+    document.querySelectorAll('[data-key]').forEach(el => {
+      setNested(content, el.dataset.key, el.value);
+    });
+    return content;
+  }
+
+  async function saveContent() {
+    const token = localStorage.getItem(TOKEN_KEY);
+    const btn = document.getElementById('save-btn');
+    btn.textContent = 'Guardando...';
+    btn.disabled = true;
+    try {
+      const json = JSON.stringify(getFormData(), null, 2);
+      const encoded = btoa(unescape(encodeURIComponent(json)));
+      const resp = await fetch(
+        `https://api.github.com/repos/${REPO}/contents/${FILE}`,
+        {
+          method: 'PUT',
+          headers: {
+            Authorization: `token ${token}`,
+            'Content-Type': 'application/json',
+            Accept: 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            message: 'Update content via admin panel',
+            content: encoded,
+            sha: currentSha,
+            branch: BRANCH
+          })
+        }
+      );
+      if (resp.status === 401) { logout(); return; }
+      if (!resp.ok) {
+        const err = await resp.json();
+        throw new Error(err.message || 'HTTP ' + resp.status);
+      }
+      const data = await resp.json();
+      currentSha = data.content.sha;
+      showToast('¡Guardado! La web se actualizará en ~1 minuto.', 'success');
+    } catch (e) {
+      showToast('Error al guardar: ' + e.message, 'error');
+    } finally {
+      btn.textContent = 'Guardar cambios';
+      btn.disabled = false;
+    }
+  }
+
+  function showToast(msg, type) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = `toast ${type} show`;
+    setTimeout(() => t.classList.remove('show'), 5000);
+  }
+</script>
 </body>
 </html>

@@ -1,39 +1,33 @@
 export default async function handler(req, res) {
-  const { code } = req.query;
+  const { code, error } = req.query;
 
-  const tokenRes = await fetch('https://github.com/login/oauth/access_token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      client_id: process.env.GITHUB_CLIENT_ID,
-      client_secret: process.env.GITHUB_CLIENT_SECRET,
-      code,
-    }),
-  });
+  if (error) {
+    return res.redirect('/admin/?error=' + encodeURIComponent(error));
+  }
 
-  const { access_token, error } = await tokenRes.json();
+  if (!code) {
+    return res.redirect('/admin/?error=no_code');
+  }
 
-  const content = error
-    ? `authorization:github:error:${error}`
-    : `authorization:github:success:${access_token}`;
+  try {
+    const tokenRes = await fetch('https://github.com/login/oauth/access_token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        client_id: process.env.GITHUB_CLIENT_ID,
+        client_secret: process.env.GITHUB_CLIENT_SECRET,
+        code,
+      }),
+    });
 
-  res.setHeader('Content-Type', 'text/html');
-  res.send(`<!DOCTYPE html>
-<html>
-<body>
-  <p style="font-family:sans-serif;text-align:center;margin-top:40px;color:#888;">Autenticando...</p>
-  <script>
-    (function() {
-      var msg = ${JSON.stringify(content)};
-      if (window.opener) {
-        window.opener.postMessage(msg, '*');
-        setTimeout(function() { window.close(); }, 500);
-      } else {
-        // Fallback: no popup, pass token via hash
-        window.location = '/admin/#token=' + encodeURIComponent(msg.split('success:')[1] || '');
-      }
-    })();
-  </script>
-</body>
-</html>`);
+    const data = await tokenRes.json();
+
+    if (data.error || !data.access_token) {
+      return res.redirect('/admin/?error=' + encodeURIComponent(data.error || 'token_failed'));
+    }
+
+    res.redirect('/admin/#token=' + encodeURIComponent(data.access_token));
+  } catch (err) {
+    res.redirect('/admin/?error=server_error');
+  }
 }
