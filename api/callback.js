@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
   const content = error
     ? `authorization:github:error:${error}`
-    : `authorization:github:success:${JSON.stringify({ token: access_token, provider: 'github' })}`;
+    : `authorization:github:success:${access_token}`;
 
   res.setHeader('Content-Type', 'text/html');
   res.send(`<!DOCTYPE html>
