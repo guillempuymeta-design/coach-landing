@@ -18,14 +18,22 @@ export default async function handler(req, res) {
     : `authorization:github:success:${JSON.stringify({ token: access_token, provider: 'github' })}`;
 
   res.setHeader('Content-Type', 'text/html');
-  res.send(`<!DOCTYPE html><html><body><script>
+  res.send(`<!DOCTYPE html>
+<html>
+<body>
+  <p style="font-family:sans-serif;text-align:center;margin-top:40px;color:#888;">Autenticando...</p>
+  <script>
     (function() {
       var msg = ${JSON.stringify(content)};
-      function receiveMessage(e) {
-        window.opener.postMessage(msg, e.origin);
+      if (window.opener) {
+        window.opener.postMessage(msg, '*');
+        setTimeout(function() { window.close(); }, 500);
+      } else {
+        // Fallback: no popup, redirect to admin
+        window.location = '/admin/';
       }
-      window.addEventListener('message', receiveMessage, false);
-      window.opener.postMessage('authorizing:github', '*');
     })();
-  </script></body></html>`);
+  </script>
+</body>
+</html>`);
 }
