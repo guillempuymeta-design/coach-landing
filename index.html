@@ -676,6 +676,56 @@
 </footer>
 
 <script>
+/* LOAD DESIGN TOKENS */
+fetch('/design.json')
+  .then(r => r.json())
+  .then(d => {
+    const r = document.documentElement;
+    if (d.colors?.accent) {
+      const hex = d.colors.accent;
+      r.style.setProperty('--acc', hex);
+      r.style.setProperty('--acc2', shadeHex(hex, -20));
+      const rgb = hexToRgb(hex);
+      r.style.setProperty('--glow', `rgba(${rgb},0.22)`);
+    }
+    if (d.colors?.bg) {
+      const bg = d.colors.bg;
+      r.style.setProperty('--bg', bg);
+      r.style.setProperty('--bg2', shadeHex(bg, 8));
+      r.style.setProperty('--bg3', shadeHex(bg, 14));
+      r.style.setProperty('--bg4', shadeHex(bg, 5));
+    }
+    if (d.colors?.text) r.style.setProperty('--white', d.colors.text);
+    if (d.fonts?.body) {
+      loadGFont(d.fonts.body, '400;500;600;700;800');
+      r.style.setProperty('--fb', `'${d.fonts.body}', sans-serif`);
+    }
+    if (d.fonts?.serif) {
+      loadGFont(d.fonts.serif, 'ital@1');
+      r.style.setProperty('--fi', `'${d.fonts.serif}', Georgia, serif`);
+    }
+  })
+  .catch(() => {});
+
+function hexToRgb(hex) {
+  const h = hex.replace('#','');
+  const n = parseInt(h.length===3 ? h.split('').map(x=>x+x).join('') : h, 16);
+  return `${(n>>16)&255},${(n>>8)&255},${n&255}`;
+}
+function shadeHex(hex, amt) {
+  const h = hex.replace('#','');
+  const n = parseInt(h.length===3 ? h.split('').map(x=>x+x).join('') : h, 16);
+  const clamp = v => Math.min(255, Math.max(0, v));
+  const r = clamp(((n>>16)&255)+amt), g = clamp(((n>>8)&255)+amt), b = clamp((n&255)+amt);
+  return '#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+}
+function loadGFont(family, weights) {
+  const l = document.createElement('link');
+  l.rel = 'stylesheet';
+  l.href = `https://fonts.googleapis.com/css2?family=${family.replace(/ /g,'+')}:${weights}&display=swap`;
+  document.head.appendChild(l);
+}
+
 /* LOAD CONTENT FROM content.json */
 fetch('/content.json')
   .then(r => r.json())

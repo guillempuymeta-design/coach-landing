@@ -1,0 +1,11 @@
+{
+  "colors": {
+    "accent": "#5bffa0",
+    "bg": "#090909",
+    "text": "#fafaf8"
+  },
+  "fonts": {
+    "body": "DM Sans",
+    "serif": "Instrument Serif"
+  }
+}

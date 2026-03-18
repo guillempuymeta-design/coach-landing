@@ -85,6 +85,32 @@
     .toast.success { background: var(--accent); color: #000; }
     .toast.error { background: var(--danger); color: #fff; }
     .loading { text-align: center; padding: 60px 24px; color: var(--muted); }
+
+    /* TABS */
+    .tabs { display: flex; gap: 2px; padding: 0 24px; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .tab { padding: 12px 18px; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s; }
+    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* DESIGN */
+    .design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .color-field { display: flex; align-items: center; gap: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; }
+    .color-field input[type=color] { width: 32px; height: 32px; border: none; background: none; cursor: pointer; padding: 0; border-radius: 4px; }
+    .color-field span { font-size: 13px; color: var(--text); flex: 1; }
+    .color-field .hex { font-size: 12px; color: var(--muted); font-family: monospace; }
+    .font-select { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 9px 12px; color: var(--text); font-family: inherit; font-size: 14px; outline: none; cursor: pointer; }
+    .font-select:focus { border-color: var(--accent); }
+    .font-preview { margin-top: 8px; font-size: 18px; color: var(--text); padding: 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; }
+
+    /* IMAGE UPLOAD */
+    .img-upload-area { border: 2px dashed var(--border); border-radius: 8px; padding: 24px; text-align: center; cursor: pointer; transition: border-color 0.2s; }
+    .img-upload-area:hover { border-color: var(--accent); }
+    .img-upload-area input { display: none; }
+    .img-preview { width: 100%; max-height: 200px; object-fit: cover; border-radius: 8px; margin-top: 12px; display: none; }
+    .img-preview.show { display: block; }
+    .upload-hint { font-size: 13px; color: var(--muted); }
+    .upload-hint strong { color: var(--accent); }
   </style>
 </head>
 <body>
@@ -107,11 +133,113 @@
   <div class="top-bar">
     <h1>Panel de Edición</h1>
     <a href="https://coach-landing-delta.vercel.app" target="_blank">Ver web →</a>
-    <button class="btn btn-save" id="save-btn" onclick="saveContent()">Guardar cambios</button>
+    <button class="btn btn-save" id="save-btn" onclick="saveAll()">Guardar cambios</button>
     <button class="btn btn-logout" onclick="logout()">Salir</button>
   </div>
-  <div class="content" id="editor-content">
-    <div class="loading">Cargando contenido...</div>
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('contenido')">Contenido</div>
+    <div class="tab" onclick="switchTab('diseno')">Diseño</div>
+    <div class="tab" onclick="switchTab('imagenes')">Imágenes</div>
+  </div>
+
+  <div class="tab-panel active" id="tab-contenido">
+    <div class="content" id="editor-content">
+      <div class="loading">Cargando contenido...</div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-diseno">
+    <div class="content">
+      <div class="section open">
+        <div class="section-header" onclick="this.parentElement.classList.toggle('open')">
+          <h2>Colores</h2><span class="chevron">▼</span>
+        </div>
+        <div class="section-body">
+          <div class="design-grid">
+            <div class="field">
+              <label>Color de acento</label>
+              <div class="color-field">
+                <input type="color" id="color-accent" value="#5bffa0" oninput="updateColorHex('accent',this.value)">
+                <span>Acento principal</span>
+                <span class="hex" id="hex-accent">#5bffa0</span>
+              </div>
+            </div>
+            <div class="field">
+              <label>Fondo</label>
+              <div class="color-field">
+                <input type="color" id="color-bg" value="#090909" oninput="updateColorHex('bg',this.value)">
+                <span>Color de fondo</span>
+                <span class="hex" id="hex-bg">#090909</span>
+              </div>
+            </div>
+            <div class="field">
+              <label>Texto</label>
+              <div class="color-field">
+                <input type="color" id="color-text" value="#fafaf8" oninput="updateColorHex('text',this.value)">
+                <span>Color de texto</span>
+                <span class="hex" id="hex-text">#fafaf8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section open">
+        <div class="section-header" onclick="this.parentElement.classList.toggle('open')">
+          <h2>Tipografía</h2><span class="chevron">▼</span>
+        </div>
+        <div class="section-body">
+          <div class="field">
+            <label>Fuente principal (textos)</label>
+            <select class="font-select" id="font-body" onchange="updateFontPreview('body')">
+              <option value="DM Sans">DM Sans</option>
+              <option value="Inter">Inter</option>
+              <option value="Poppins">Poppins</option>
+              <option value="Montserrat">Montserrat</option>
+              <option value="Raleway">Raleway</option>
+              <option value="Nunito">Nunito</option>
+              <option value="Lato">Lato</option>
+              <option value="Roboto">Roboto</option>
+            </select>
+            <div class="font-preview" id="preview-body">El texto de tu landing aparecerá con esta tipografía</div>
+          </div>
+          <div class="field" style="margin-top:16px">
+            <label>Fuente cursiva (títulos en énfasis)</label>
+            <select class="font-select" id="font-serif" onchange="updateFontPreview('serif')">
+              <option value="Instrument Serif">Instrument Serif</option>
+              <option value="Playfair Display">Playfair Display</option>
+              <option value="Lora">Lora</option>
+              <option value="Merriweather">Merriweather</option>
+              <option value="EB Garamond">EB Garamond</option>
+              <option value="Cormorant Garamond">Cormorant Garamond</option>
+            </select>
+            <div class="font-preview" id="preview-serif" style="font-style:italic">Los títulos con acento cursivo usarán esta fuente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-imagenes">
+    <div class="content">
+      <div class="section open">
+        <div class="section-header" onclick="this.parentElement.classList.toggle('open')">
+          <h2>Foto del Coach</h2><span class="chevron">▼</span>
+        </div>
+        <div class="section-body">
+          <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Esta imagen aparece en el hero de la landing. Recomendado: formato cuadrado o vertical, mínimo 600px.</p>
+          <div class="img-upload-area" onclick="document.getElementById('coach-img-input').click()">
+            <input type="file" id="coach-img-input" accept="image/*" onchange="previewImage(this,'coach-preview','coach-img-data')">
+            <div class="upload-hint">
+              <strong>Haz click para subir</strong> o arrastra aquí<br>
+              JPG, PNG o WEBP
+            </div>
+            <img id="coach-preview" class="img-preview" src="" alt="Preview">
+          </div>
+          <div id="coach-img-data" style="display:none"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -120,9 +248,11 @@
 <script>
   const REPO = 'guillempuymeta-design/coach-landing';
   const FILE = 'content.json';
+  const DESIGN_FILE = 'design.json';
   const BRANCH = 'master';
   const TOKEN_KEY = 'gh_admin_token';
   let currentSha = null;
+  let designSha = null;
 
   (function init() {
     const token = localStorage.getItem(TOKEN_KEY);
@@ -163,19 +293,92 @@
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('editor-screen').style.display = 'block';
     try {
-      const resp = await fetch(
-        `https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}`,
-        { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' } }
-      );
-      if (resp.status === 401) { logout(); return; }
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      const data = await resp.json();
-      currentSha = data.sha;
-      const content = JSON.parse(atob(data.content.replace(/\n/g, '')));
+      const [contentResp, designResp] = await Promise.all([
+        ghGet(token, FILE),
+        ghGet(token, DESIGN_FILE)
+      ]);
+      if (contentResp.status === 401) { logout(); return; }
+      if (!contentResp.ok) throw new Error('HTTP ' + contentResp.status);
+
+      const contentData = await contentResp.json();
+      currentSha = contentData.sha;
+      const content = JSON.parse(atob(contentData.content.replace(/\n/g, '')));
       renderForm(content);
+
+      if (designResp.ok) {
+        const designData = await designResp.json();
+        designSha = designData.sha;
+        const design = JSON.parse(atob(designData.content.replace(/\n/g, '')));
+        loadDesignForm(design);
+      }
     } catch (e) {
       document.getElementById('editor-content').innerHTML =
         `<div class="loading">Error al cargar: ${e.message}</div>`;
+    }
+  }
+
+  function ghGet(token, file) {
+    return fetch(`https://api.github.com/repos/${REPO}/contents/${file}?ref=${BRANCH}`,
+      { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' } });
+  }
+
+  function loadDesignForm(d) {
+    if (d.colors?.accent) { document.getElementById('color-accent').value = d.colors.accent; document.getElementById('hex-accent').textContent = d.colors.accent; }
+    if (d.colors?.bg) { document.getElementById('color-bg').value = d.colors.bg; document.getElementById('hex-bg').textContent = d.colors.bg; }
+    if (d.colors?.text) { document.getElementById('color-text').value = d.colors.text; document.getElementById('hex-text').textContent = d.colors.text; }
+    if (d.fonts?.body) { document.getElementById('font-body').value = d.fonts.body; updateFontPreview('body'); }
+    if (d.fonts?.serif) { document.getElementById('font-serif').value = d.fonts.serif; updateFontPreview('serif'); }
+  }
+
+  function switchTab(name) {
+    document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', ['contenido','diseno','imagenes'][i] === name));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+  }
+
+  function updateColorHex(key, val) {
+    document.getElementById('hex-' + key).textContent = val;
+  }
+
+  function updateFontPreview(type) {
+    const sel = document.getElementById('font-' + type);
+    const preview = document.getElementById('preview-' + type);
+    const family = sel.value;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `https://fonts.googleapis.com/css2?family=${family.replace(/ /g,'+')}:ital,wght@0,400;0,700;1,400&display=swap`;
+    document.head.appendChild(link);
+    preview.style.fontFamily = `'${family}', serif`;
+  }
+
+  function previewImage(input, previewId, dataId) {
+    const file = input.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const preview = document.getElementById(previewId);
+      preview.src = e.target.result;
+      preview.classList.add('show');
+      document.getElementById(dataId).textContent = e.target.result.split(',')[1];
+    };
+    reader.readAsDataURL(file);
+  }
+
+  async function saveAll() {
+    const token = localStorage.getItem(TOKEN_KEY);
+    const btn = document.getElementById('save-btn');
+    btn.textContent = 'Guardando...';
+    btn.disabled = true;
+    try {
+      await saveContent(token);
+      await saveDesign(token);
+      await saveImages(token);
+      showToast('¡Guardado! La web se actualizará en ~1 minuto.', 'success');
+    } catch (e) {
+      showToast('Error al guardar: ' + e.message, 'error');
+    } finally {
+      btn.textContent = 'Guardar cambios';
+      btn.disabled = false;
     }
   }
 
@@ -297,45 +500,55 @@
     return content;
   }
 
-  async function saveContent() {
-    const token = localStorage.getItem(TOKEN_KEY);
-    const btn = document.getElementById('save-btn');
-    btn.textContent = 'Guardando...';
-    btn.disabled = true;
-    try {
-      const json = JSON.stringify(getFormData(), null, 2);
-      const encoded = btoa(unescape(encodeURIComponent(json)));
-      const resp = await fetch(
-        `https://api.github.com/repos/${REPO}/contents/${FILE}`,
-        {
-          method: 'PUT',
-          headers: {
-            Authorization: `token ${token}`,
-            'Content-Type': 'application/json',
-            Accept: 'application/vnd.github.v3+json'
-          },
-          body: JSON.stringify({
-            message: 'Update content via admin panel',
-            content: encoded,
-            sha: currentSha,
-            branch: BRANCH
-          })
-        }
-      );
-      if (resp.status === 401) { logout(); return; }
-      if (!resp.ok) {
-        const err = await resp.json();
-        throw new Error(err.message || 'HTTP ' + resp.status);
+  async function ghPut(token, file, sha, json, message) {
+    const encoded = btoa(unescape(encodeURIComponent(json)));
+    const resp = await fetch(`https://api.github.com/repos/${REPO}/contents/${file}`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json', Accept: 'application/vnd.github.v3+json' },
+      body: JSON.stringify({ message, content: encoded, sha, branch: BRANCH })
+    });
+    if (resp.status === 401) { logout(); throw new Error('Sesión expirada'); }
+    if (!resp.ok) { const e = await resp.json(); throw new Error(e.message || 'HTTP ' + resp.status); }
+    return (await resp.json()).content.sha;
+  }
+
+  async function saveContent(token) {
+    const json = JSON.stringify(getFormData(), null, 2);
+    currentSha = await ghPut(token, FILE, currentSha, json, 'Update content via admin panel');
+  }
+
+  async function saveDesign(token) {
+    const design = {
+      colors: {
+        accent: document.getElementById('color-accent').value,
+        bg: document.getElementById('color-bg').value,
+        text: document.getElementById('color-text').value
+      },
+      fonts: {
+        body: document.getElementById('font-body').value,
+        serif: document.getElementById('font-serif').value
       }
-      const data = await resp.json();
-      currentSha = data.content.sha;
-      showToast('¡Guardado! La web se actualizará en ~1 minuto.', 'success');
-    } catch (e) {
-      showToast('Error al guardar: ' + e.message, 'error');
-    } finally {
-      btn.textContent = 'Guardar cambios';
-      btn.disabled = false;
-    }
+    };
+    const json = JSON.stringify(design, null, 2);
+    designSha = await ghPut(token, DESIGN_FILE, designSha, json, 'Update design via admin panel');
+  }
+
+  async function saveImages(token) {
+    const coachData = document.getElementById('coach-img-data').textContent;
+    if (!coachData) return;
+    const resp = await fetch(`https://api.github.com/repos/${REPO}/contents/images/coach.jpg`, {
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    const sha = resp.ok ? (await resp.json()).sha : undefined;
+    const body = { message: 'Update coach photo via admin', content: coachData, branch: BRANCH };
+    if (sha) body.sha = sha;
+    const put = await fetch(`https://api.github.com/repos/${REPO}/contents/images/coach.jpg`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json', Accept: 'application/vnd.github.v3+json' },
+      body: JSON.stringify(body)
+    });
+    if (!put.ok) { const e = await put.json(); throw new Error(e.message); }
+    document.getElementById('coach-img-data').textContent = '';
   }
 
   function showToast(msg, type) {
