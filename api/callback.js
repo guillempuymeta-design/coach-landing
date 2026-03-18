@@ -29,8 +29,8 @@ export default async function handler(req, res) {
         window.opener.postMessage(msg, '*');
         setTimeout(function() { window.close(); }, 500);
       } else {
-        // Fallback: no popup, redirect to admin
-        window.location = '/admin/';
+        // Fallback: no popup, pass token via hash
+        window.location = '/admin/#token=' + encodeURIComponent(msg.split('success:')[1] || '');
       }
     })();
   </script>

@@ -4,8 +4,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel de Edición</title>
+  <script>
+    // Handle OAuth redirect: token passed via URL hash
+    (function() {
+      var hash = window.location.hash;
+      if (hash && hash.indexOf('token=') !== -1) {
+        var token = decodeURIComponent(hash.replace('#token=', ''));
+        if (token) {
+          localStorage.setItem('netlify-cms-user', JSON.stringify({
+            token: token,
+            backendName: 'github'
+          }));
+          window.history.replaceState({}, '', '/admin/');
+        }
+      }
+    })();
+  </script>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/decap-cms@3.3.3/dist/decap-cms.js"></script>
 </body>
 </html>
