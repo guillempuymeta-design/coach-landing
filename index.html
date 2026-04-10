@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Descubre el sistema de 3 pasos para impulsar tu proyecto con confianza. Sesión gratuita de diagnóstico.">
+    <meta name="description" content="Descubre el sistema para impulsar tus proyectos con confianza y sin creencias limitantes. Sesión gratuita de diagnóstico.">
     <meta property="og:title" content="¿Sientes que tu proyecto puede ir mucho más lejos?">
     <title>Coach de Emprendedores — Sesión Gratuita</title>
 
@@ -15,17 +15,17 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg:     #090909;
-            --bg2:    #111113;
-            --bg3:    #17171a;
-            --bg4:    #0d0d0f;
-            --border: rgba(255,255,255,0.07);
-            --acc:    #5bffa0;
-            --acc2:   #3de084;
-            --glow:   rgba(91,255,160,0.22);
-            --white:  #fafaf8;
-            --gray:   #888;
-            --gray2:  #444;
+            --bg:     #ffffff;
+            --bg2:    #f5f7fa;
+            --bg3:    #edf0f5;
+            --bg4:    #f0f2f6;
+            --border: rgba(26,58,107,0.1);
+            --acc:    #1a3a6b;
+            --acc2:   #15305a;
+            --glow:   rgba(26,58,107,0.15);
+            --white:  #1a2a4a;
+            --gray:   #5a6a7a;
+            --gray2:  #8a95a5;
             --fb: 'DM Sans', sans-serif;
             --fi: 'Instrument Serif', Georgia, serif;
         }
@@ -59,8 +59,8 @@
         /* ── TAG ── */
         .tag {
             display: inline-flex; align-items: center; gap: 7px;
-            background: rgba(91,255,160,0.07);
-            border: 1px solid rgba(91,255,160,0.2);
+            background: rgba(26,58,107,0.07);
+            border: 1px solid rgba(26,58,107,0.2);
             color: var(--acc);
             font-size: 0.72rem; font-weight: 600;
             letter-spacing: 0.07em; text-transform: uppercase;
@@ -79,7 +79,7 @@
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             padding: 17px 28px; width: 100%;
-            background: var(--acc); color: #050f08;
+            background: var(--acc); color: #ffffff;
             font-family: var(--fb); font-size: 0.97rem; font-weight: 800;
             border: none; border-radius: 13px; cursor: pointer; text-decoration: none;
             box-shadow: 0 0 0 0 var(--glow);
@@ -87,7 +87,7 @@
         }
         .btn:hover {
             background: var(--acc2);
-            box-shadow: 0 0 32px var(--glow), 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 0 32px var(--glow), 0 4px 20px rgba(0,0,0,0.1);
             transform: translateY(-2px);
         }
         .btn svg { width: 17px; height: 17px; flex-shrink: 0; }
@@ -122,7 +122,7 @@
             position: absolute; top: -200px; left: 50%;
             transform: translateX(-50%);
             width: 700px; height: 500px;
-            background: radial-gradient(ellipse, rgba(91,255,160,0.07) 0%, transparent 65%);
+            background: radial-gradient(ellipse, rgba(26,58,107,0.05) 0%, transparent 65%);
             pointer-events: none;
         }
 
@@ -154,27 +154,27 @@
             position: relative; width: 100%; padding-top: 56.25%;
             background: var(--bg3);
             border-radius: 18px; overflow: hidden;
-            border: 1px solid rgba(91,255,160,0.1);
-            box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+            border: 1px solid rgba(26,58,107,0.12);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.08), 0 0 0 1px rgba(26,58,107,0.06);
             cursor: pointer;
         }
         .vsl-inner {
             position: absolute; inset: 0;
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-            background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(91,255,160,0.05) 0%, transparent 70%);
+            background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(26,58,107,0.04) 0%, transparent 70%);
         }
         .vsl-play {
             width: 68px; height: 68px; border-radius: 50%;
             background: var(--acc);
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 0 14px rgba(91,255,160,0.1), 0 0 0 28px rgba(91,255,160,0.05);
+            box-shadow: 0 0 0 14px rgba(26,58,107,0.1), 0 0 0 28px rgba(26,58,107,0.05);
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .vsl-box:hover .vsl-play {
             transform: scale(1.08);
-            box-shadow: 0 0 0 16px rgba(91,255,160,0.14), 0 0 40px rgba(91,255,160,0.3);
+            box-shadow: 0 0 0 16px rgba(26,58,107,0.14), 0 0 40px rgba(26,58,107,0.2);
         }
-        .vsl-play svg { width: 24px; height: 24px; color: #050f08; margin-left: 3px; }
+        .vsl-play svg { width: 24px; height: 24px; color: #ffffff; margin-left: 3px; }
         .vsl-lbl { font-size: 0.74rem; color: var(--gray2); letter-spacing: 0.05em; }
 
         /* Social bar */
@@ -200,8 +200,8 @@
 
         .paso-badge {
             display: inline-block;
-            background: rgba(91,255,160,0.1);
-            border: 1px solid rgba(91,255,160,0.25);
+            background: rgba(26,58,107,0.08);
+            border: 1px solid rgba(26,58,107,0.2);
             color: var(--acc);
             font-size: 0.65rem; font-weight: 800;
             letter-spacing: 0.1em; text-transform: uppercase;
@@ -233,13 +233,13 @@
         .flabel { display: block; font-size: 0.7rem; font-weight: 600; color: var(--gray); margin-bottom: 6px; }
         .finput {
             width: 100%; background: var(--bg);
-            border: 1px solid rgba(255,255,255,0.08); color: var(--white);
+            border: 1px solid rgba(26,58,107,0.15); color: var(--white);
             font-family: var(--fb); font-size: 0.95rem;
             padding: 13px 14px; border-radius: 11px; outline: none;
             -webkit-appearance: none; transition: border-color 0.22s;
         }
         .finput::placeholder { color: var(--gray2); }
-        .finput:focus { border-color: rgba(91,255,160,0.4); }
+        .finput:focus { border-color: rgba(26,58,107,0.5); }
         .fsubmit { margin-top: 18px; }
         .form-note {
             display: flex; align-items: center; justify-content: center; gap: 6px;
@@ -251,7 +251,7 @@
         .success.show { display: block; }
         .s-ring {
             width: 54px; height: 54px; border-radius: 50%;
-            background: rgba(91,255,160,0.08); border: 1px solid rgba(91,255,160,0.3);
+            background: rgba(26,58,107,0.08); border: 1px solid rgba(26,58,107,0.2);
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 14px; font-size: 1.4rem; color: var(--acc);
         }
@@ -270,7 +270,7 @@
             border-radius: 14px; padding: 18px;
             transition: border-color 0.25s, transform 0.25s;
         }
-        .feat:hover { border-color: rgba(91,255,160,0.18); transform: translateY(-2px); }
+        .feat:hover { border-color: rgba(26,58,107,0.25); transform: translateY(-2px); }
         .feat-ico {
             width: 40px; height: 40px; border-radius: 11px;
             display: flex; align-items: center; justify-content: center;
@@ -292,15 +292,21 @@
             border-radius: 14px; padding: 20px;
             transition: border-color 0.25s, transform 0.25s;
         }
-        .step:hover { border-color: rgba(91,255,160,0.2); transform: translateX(4px); }
+        .step:hover { border-color: rgba(26,58,107,0.25); transform: translateX(4px); }
         .step-n {
             width: 36px; height: 36px; border-radius: 10px;
-            background: rgba(91,255,160,0.08); border: 1px solid rgba(91,255,160,0.18);
+            background: rgba(26,58,107,0.08); border: 1px solid rgba(26,58,107,0.18);
             display: flex; align-items: center; justify-content: center;
             font-size: 0.78rem; font-weight: 800; color: var(--acc); flex-shrink: 0;
         }
         .step-title { font-size: 0.93rem; font-weight: 800; margin-bottom: 4px; }
         .step-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
+        .techniques-box { margin-top: 14px; padding: 16px 20px; background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; }
+        .techniques-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--acc); margin-bottom: 10px; }
+        .techniques-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+        .techniques-list li { font-size: 0.78rem; color: var(--gray); line-height: 1.5; padding-left: 14px; position: relative; }
+        .techniques-list li::before { content: "·"; position: absolute; left: 0; color: var(--acc); font-weight: 700; }
+        @media (max-width: 600px) { .techniques-list { grid-template-columns: 1fr; } }
 
         /* ════════════════════════
            PARA QUIÉN
@@ -315,7 +321,7 @@
             background: var(--bg2); border: 1px solid var(--border);
             border-radius: 16px; padding: 22px 20px;
         }
-        .fit-col.yes { border-color: rgba(91,255,160,0.2); }
+        .fit-col.yes { border-color: rgba(26,58,107,0.25); }
         .fit-col.no  { border-color: rgba(239,68,68,0.15); }
 
         .fit-header {
@@ -327,7 +333,7 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 0.8rem; font-weight: 800;
         }
-        .fit-badge.yes { background: rgba(91,255,160,0.12); color: var(--acc); }
+        .fit-badge.yes { background: rgba(26,58,107,0.1); color: var(--acc); }
         .fit-badge.no  { background: rgba(239,68,68,0.1); color: #ef4444; }
 
         .fit-items { display: flex; flex-direction: column; gap: 9px; }
@@ -356,7 +362,7 @@
         .testi-who { display: flex; align-items: center; gap: 10px; }
         .testi-av {
             width: 36px; height: 36px; border-radius: 50%;
-            background: rgba(91,255,160,0.1); border: 1px solid rgba(91,255,160,0.2);
+            background: rgba(26,58,107,0.08); border: 1px solid rgba(26,58,107,0.18);
             display: flex; align-items: center; justify-content: center;
             font-size: 0.82rem; font-weight: 800; color: var(--acc); flex-shrink: 0;
         }
@@ -392,7 +398,7 @@
             position: absolute; bottom: -100px; left: 50%;
             transform: translateX(-50%);
             width: 600px; height: 400px;
-            background: radial-gradient(ellipse, rgba(91,255,160,0.06) 0%, transparent 65%);
+            background: radial-gradient(ellipse, rgba(26,58,107,0.04) 0%, transparent 65%);
             pointer-events: none;
         }
         .cta-h2 {
@@ -426,7 +432,7 @@
             background: var(--bg4); border-top: 1px solid var(--border);
             padding: 26px 20px; text-align: center;
         }
-        .f-name { font-weight: 700; font-size: 0.88rem; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+        .f-name { font-weight: 700; font-size: 0.88rem; color: rgba(26,42,74,0.5); margin-bottom: 4px; }
         .f-copy { font-size: 0.64rem; color: var(--gray2); }
 
         /* ════════════════════════
@@ -446,12 +452,12 @@
     <div class="hero-glow"></div>
     <div class="wrap">
         <div class="hero-tag anim"><span class="tag"><span class="tag-dot"></span><span id="hero-tag">Sesión gratuita disponible</span></span></div>
-        <p class="hero-pre anim d1" id="hero-pre">Descubre el sistema de 3 pasos que te permite</p>
+        <p class="hero-pre anim d1" id="hero-pre">Descubre el sistema que te permite</p>
         <h1 class="hero-h1 anim d2">
-            <span id="hero-h1-1">Impulsar tu proyecto</span><br>con <em id="hero-h1-2">confianza y sin bloqueos</em>
+            <span id="hero-h1-1">Impulsar tus proyectos</span><br>con <em id="hero-h1-2">confianza y sin creencias limitantes</em>
         </h1>
         <p class="hero-sub anim d3" id="hero-sub">
-            Te acompaño en tu viaje de autoconocimiento para que impulses con confianza tus proyectos. Sin miedo. Sin dudas internas.
+            Te acompaño en tu viaje de autoconocimiento para que expreses todo tu potencial y talentos. Sin miedos. Sin dudas. Juntos diseñaremos la mejor estrategia para que avances hacia el éxito desde una nueva consciencia.
         </p>
 
         <!-- VSL -->
@@ -519,25 +525,24 @@
 <section id="sistema">
     <div class="wrap">
         <p class="sec-label anim" id="sistema-label">Lo que conseguirás</p>
-        <h2 class="sec-h2 anim d1" id="sistema-h2">Un sistema diseñado para<br><em>desbloquear emprendedores</em></h2>
-        <p class="sec-body anim d2" id="sistema-body">Porque los proyectos casi nunca se frenan por la idea — se frenan por dudas internas, miedo al error y creencias que no nos pertenecen.</p>
+        <h2 class="sec-h2 anim d1" id="sistema-h2">Un sistema diseñado para<br><em>emprendedores y líderes de equipo</em></h2>
 
         <div class="features" id="features">
             <div class="feat anim fl d1">
                 <div class="feat-ico">🎯</div>
-                <div><div class="feat-title">Diagnóstico personalizado</div><div class="feat-desc">Identificamos exactamente qué bloqueos te están frenando</div></div>
+                <div><div class="feat-title">Diagnóstico personalizado</div><div class="feat-desc">Identificamos con precisión qué bloqueos te están frenando y qué recursos personales puedes potenciar.</div></div>
             </div>
             <div class="feat anim fl d2">
-                <div class="feat-ico">🧠</div>
-                <div><div class="feat-title">Claridad mental total</div><div class="feat-desc">Elimina el ruido interior y toma decisiones desde la confianza</div></div>
+                <div class="feat-ico">🧘</div>
+                <div><div class="feat-title">Claridad mental y plena atención</div><div class="feat-desc">Escucha tu voz interior y toma decisiones desde la confianza y el equilibrio emocional.</div></div>
             </div>
             <div class="feat anim fr d1">
                 <div class="feat-ico">⚡</div>
-                <div><div class="feat-title">Acción inmediata</div><div class="feat-desc">Plan de acción concreto adaptado a tu realidad y objetivos</div></div>
+                <div><div class="feat-title">Acción inmediata</div><div class="feat-desc">Plan de acción adaptado a tu realidad, objetivos y propósito de vida. Paso a paso, cada persona necesita su tiempo.</div></div>
             </div>
             <div class="feat anim fr d2">
-                <div class="feat-ico">🔓</div>
-                <div><div class="feat-title">Acompañamiento total</div><div class="feat-desc">Soporte continuo durante todo el proceso de transformación</div></div>
+                <div class="feat-ico">🤝</div>
+                <div><div class="feat-title">Acompañamiento continuo</div><div class="feat-desc">Soporte durante todo tu proceso de transformación. Nunca te vas a sentir solo.</div></div>
             </div>
         </div>
     </div>
@@ -547,20 +552,36 @@
 <section id="pasos">
     <div class="wrap">
         <p class="sec-label anim" id="pasos-label">El proceso</p>
-        <h2 class="sec-h2 anim d1" id="pasos-h2">3 pasos para tus<br>primeros resultados</h2>
+        <h2 class="sec-h2 anim d1" id="pasos-h2">3 pasos para guiar tu<br>proceso de transformación</h2>
 
         <div class="steps" id="steps">
             <div class="step anim fl d1">
                 <div class="step-n">01</div>
-                <div><div class="step-title">Análisis gratuito</div><p class="step-desc">Hablamos 30 minutos para entender tu situación y qué bloqueos específicos están frenando tu avance. Sin juicios.</p></div>
+                <div><div class="step-title">Análisis gratuito</div><p class="step-desc">Hablamos 30 minutos para conocer tus necesidades y los factores que están frenando tu expansión. Sin juicios de valor.</p></div>
             </div>
             <div class="step anim fl d2">
                 <div class="step-n">02</div>
-                <div><div class="step-title">Estrategia a medida</div><p class="step-desc">Diseñamos juntos un plan de transformación basado en PNL, constelaciones y análisis transgeneracional adaptado a ti.</p></div>
+                <div>
+                    <div class="step-title">Estrategia a medida</div>
+                    <p class="step-desc">Una vez iniciado el proceso, diseñamos un plan de transformación con el apoyo de distintas técnicas y recursos de autoconocimiento, crecimiento personal y terapéuticas.</p>
+                    <div class="techniques-box">
+                        <p class="techniques-label">Técnicas y recursos</p>
+                        <ul class="techniques-list">
+                            <li>Diseño numérico evolutivo</li>
+                            <li>Recursos simbólicos y técnicas de PNL</li>
+                            <li>Mapa multidimensional</li>
+                            <li>Análisis transgeneracional y estudio del árbol genealógico</li>
+                            <li>Sistema de creencias y patrones de comportamiento</li>
+                            <li>Anamnesis personal y familiar</li>
+                            <li>Constelaciones personales y profesionales</li>
+                            <li>Testaje</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="step anim fl d3">
                 <div class="step-n">03</div>
-                <div><div class="step-title">Implementación y escalado</div><p class="step-desc">Acompañamiento durante las 5 sesiones para que tomes acción desde la claridad y la confianza real.</p></div>
+                <div><div class="step-title">Implementación y escalado</div><p class="step-desc">Estamos en contacto permanente durante las 5 sesiones para que actúes desde la claridad, la confianza real y la plena atención.</p></div>
             </div>
         </div>
 
@@ -583,21 +604,21 @@
             <div class="fit-col yes anim sc d2">
                 <div class="fit-header"><div class="fit-badge yes">✓</div>Perfecto para ti</div>
                 <div class="fit-items" id="fit-yes">
-                    <div class="fit-item"><span class="ico">✅</span><span>Tienes un proyecto pero no avanza como debería</span></div>
-                    <div class="fit-item"><span class="ico">✅</span><span>Estás listo para trabajar tus bloqueos internos de verdad</span></div>
-                    <div class="fit-item"><span class="ico">✅</span><span>Quieres resultados concretos, no más teoría</span></div>
-                    <div class="fit-item"><span class="ico">✅</span><span>Buscas acompañamiento personalizado y cercano</span></div>
-                    <div class="fit-item"><span class="ico">✅</span><span>Estás dispuesto a comprometerte con el proceso</span></div>
+                    <div class="fit-item"><span class="ico">✅</span><span>Tienes un proyecto, pero no avanza como debería.</span></div>
+                    <div class="fit-item"><span class="ico">✅</span><span>Te sientes preparado para enfrentar tus bloqueos y creencias limitantes.</span></div>
+                    <div class="fit-item"><span class="ico">✅</span><span>Quieres resultados concretos, no más teoría.</span></div>
+                    <div class="fit-item"><span class="ico">✅</span><span>Buscas un acompañamiento personalizado, profesional y cercano.</span></div>
+                    <div class="fit-item"><span class="ico">✅</span><span>Estás dispuesto a comprometerte plenamente con tu proceso.</span></div>
                 </div>
             </div>
             <div class="fit-col no anim sc d3">
                 <div class="fit-header"><div class="fit-badge no">✗</div>No es para ti</div>
                 <div class="fit-items" id="fit-no">
-                    <div class="fit-item"><span class="ico">❌</span><span>Buscas resultados mágicos sin ningún esfuerzo</span></div>
-                    <div class="fit-item"><span class="ico">❌</span><span>No crees que tus bloqueos puedan ser internos</span></div>
-                    <div class="fit-item"><span class="ico">❌</span><span>No tienes tiempo ni ganas de dedicarle al proceso</span></div>
-                    <div class="fit-item"><span class="ico">❌</span><span>Solo buscas estrategias de marketing externas</span></div>
-                    <div class="fit-item"><span class="ico">❌</span><span>Ya tienes todo resuelto y no necesitas ayuda</span></div>
+                    <div class="fit-item"><span class="ico">❌</span><span>Buscas resultados mágicos sin ningún esfuerzo.</span></div>
+                    <div class="fit-item"><span class="ico">❌</span><span>No crees que tus bloqueos puedan ser internos.</span></div>
+                    <div class="fit-item"><span class="ico">❌</span><span>No puedes dedicarle el tiempo necesario al proceso.</span></div>
+                    <div class="fit-item"><span class="ico">❌</span><span>Solo buscas estrategias de marketing externas.</span></div>
+                    <div class="fit-item"><span class="ico">❌</span><span>Ya tienes todo resuelto y no necesitas mi acompañamiento.</span></div>
                 </div>
             </div>
         </div>
@@ -690,10 +711,16 @@ fetch('/design.json')
     }
     if (d.colors?.bg) {
       const bg = d.colors.bg;
+      const rgb = hexToRgb(bg).split(',').map(Number);
+      const isLight = (rgb[0]*0.299 + rgb[1]*0.587 + rgb[2]*0.114) > 128;
+      const dir = isLight ? -1 : 1;
       r.style.setProperty('--bg', bg);
-      r.style.setProperty('--bg2', shadeHex(bg, 8));
-      r.style.setProperty('--bg3', shadeHex(bg, 14));
-      r.style.setProperty('--bg4', shadeHex(bg, 5));
+      r.style.setProperty('--bg2', shadeHex(bg, 8 * dir));
+      r.style.setProperty('--bg3', shadeHex(bg, 14 * dir));
+      r.style.setProperty('--bg4', shadeHex(bg, 5 * dir));
+      if (isLight) {
+        r.style.setProperty('--border', 'rgba(26,58,107,0.1)');
+      }
     }
     if (d.colors?.text) r.style.setProperty('--white', d.colors.text);
     if (d.fonts?.body) {
