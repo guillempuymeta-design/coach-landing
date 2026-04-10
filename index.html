@@ -295,7 +295,16 @@
         .option-btn.selected {
             border-color: var(--acc); background: rgba(26,58,107,0.06);
         }
-        .option-ico { font-size: 1.2rem; flex-shrink: 0; }
+        .option-check {
+            width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+            border: 2px solid var(--border); background: var(--bg);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s ease; font-size: 0.7rem; color: transparent;
+        }
+        .option-btn.selected .option-check {
+            background: var(--acc); border-color: var(--acc); color: #fff;
+        }
+        .option-btn.selected .option-check::after { content: '✓'; }
         .option-text { line-height: 1.45; }
         .s-ring {
             width: 54px; height: 54px; border-radius: 50%;
@@ -546,23 +555,30 @@
             <!-- STEP 1: Motivation question -->
             <div class="form-step active" id="fstep-1">
                 <h2 class="paso2-h2" id="paso2-h2">¿Por qué quieres iniciar este proceso?</h2>
-                <p class="paso2-sub" id="paso2-sub">Selecciona la opción que mejor te represente</p>
+                <p class="paso2-sub" id="paso2-sub">Puedes seleccionar más de una opción</p>
                 <div class="option-list" id="option-list">
                     <button type="button" class="option-btn" data-value="impulsar">
-                        <span class="option-ico">🚀</span>
+                        <span class="option-check"></span>
                         <span class="option-text">Quiero impulsar mi proyecto</span>
                     </button>
                     <button type="button" class="option-btn" data-value="bloqueos">
-                        <span class="option-ico">🔓</span>
-                        <span class="option-text">Quiero identificar los bloqueos que limitan mi expansión personal y mi proyecto</span>
+                        <span class="option-check"></span>
+                        <span class="option-text">Quiero identificar los bloqueos que limitan mi expansión personal</span>
                     </button>
                     <button type="button" class="option-btn" data-value="exito">
-                        <span class="option-ico">🌱</span>
+                        <span class="option-check"></span>
                         <span class="option-text">Quiero construir un proyecto de éxito y de largo recorrido, que me aporte bienestar y prosperidad</span>
                     </button>
                     <button type="button" class="option-btn" data-value="otro">
-                        <span class="option-ico">💬</span>
-                        <span class="option-text">Otro motivo — lo comento en la sesión</span>
+                        <span class="option-check"></span>
+                        <span class="option-text">Otro motivo</span>
+                    </button>
+                </div>
+                <textarea class="finput option-otro-input" id="otro-motivo" placeholder="Cuéntanos tu motivo..." rows="3" style="display:none;margin-top:10px;resize:vertical;"></textarea>
+                <div class="fsubmit" id="step1-continue" style="display:none;margin-top:18px;">
+                    <button type="button" class="btn" id="btn-continue">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        Continuar
                     </button>
                 </div>
             </div>
@@ -936,24 +952,37 @@ document.querySelectorAll('#hero .anim').forEach((el,i) => setTimeout(() => el.c
 }
 
 /* FORM STEPS */
-let selectedMotivation = '';
+let selectedMotivations = [];
 
 document.querySelectorAll('.option-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-        this.classList.add('selected');
-        selectedMotivation = this.dataset.value;
-        // Transition to step 2 after brief delay
-        setTimeout(() => {
-            document.getElementById('fstep-1').classList.remove('active');
-            document.getElementById('fstep-2').classList.add('active');
-            document.querySelector('.fp-step[data-step="1"]').classList.remove('active');
-            document.querySelector('.fp-step[data-step="1"]').classList.add('done');
-            document.querySelector('.fp-step[data-step="2"]').classList.add('active');
-            document.getElementById('form-progress-bar').style.width = '100%';
-            document.getElementById('nombre').focus();
-        }, 350);
+        this.classList.toggle('selected');
+        const val = this.dataset.value;
+        if (this.classList.contains('selected')) {
+            if (!selectedMotivations.includes(val)) selectedMotivations.push(val);
+        } else {
+            selectedMotivations = selectedMotivations.filter(v => v !== val);
+        }
+        // Show/hide "otro" textarea
+        const otroInput = document.getElementById('otro-motivo');
+        if (val === 'otro') {
+            otroInput.style.display = this.classList.contains('selected') ? 'block' : 'none';
+            if (this.classList.contains('selected')) otroInput.focus();
+        }
+        // Show/hide continue button
+        document.getElementById('step1-continue').style.display =
+            selectedMotivations.length > 0 ? 'block' : 'none';
     });
+});
+
+document.getElementById('btn-continue').addEventListener('click', function() {
+    document.getElementById('fstep-1').classList.remove('active');
+    document.getElementById('fstep-2').classList.add('active');
+    document.querySelector('.fp-step[data-step="1"]').classList.remove('active');
+    document.querySelector('.fp-step[data-step="1"]').classList.add('done');
+    document.querySelector('.fp-step[data-step="2"]').classList.add('active');
+    document.getElementById('form-progress-bar').style.width = '100%';
+    document.getElementById('nombre').focus();
 });
 
 document.getElementById('main-form').addEventListener('submit', function(e) {
