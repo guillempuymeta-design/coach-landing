@@ -1,10 +1,10 @@
 {
   "hero": {
-    "tag": "SesiÃ³n gratuita disponible",
+    "tag": "Sesión gratuita disponible",
     "pre": "Descubre el sistema que te permite",
-    "h1_line1": "IMPULSAR TUS PROYECTOS CON CONFIANZA",
-    "h1_line2": "Y SIN BLOQUEOS/CREENCIAS LIMITANTES",
-    "sub": "Te acompaÃ±o en tu viaje de autoconocimiento para que impulses con confianza tus proyectos. Sin miedo. Sin dudas internas."
+    "h1_line1": "Impulsar tus proyectos",
+    "h1_line2": "con confianza y sin creencias limitantes",
+    "sub": "Te acompaño en tu viaje de autoconocimiento para que expreses todo tu potencial y talentos. Sin miedos. Sin dudas. Juntos diseñaremos la mejor estrategia para que avances hacia el éxito desde una nueva consciencia."
   },
   "paso2": {
     "badge": "Paso 2: Habla con nosotros",
@@ -12,125 +12,65 @@
     "sub": "Rellena el formulario y te contactamos en menos de 24h"
   },
   "sistema": {
-    "label": "Lo que conseguirÃ¡s",
-    "h2": "Un sistema diseÃ±ado para desbloquear emprendedores",
-    "body": "Porque los proyectos casi nunca se frenan por la idea â se frenan por dudas internas, miedo al error y creencias que no nos pertenecen.",
+    "label": "Lo que conseguirás",
+    "h2": "Un sistema diseñado para emprendedores y líderes de equipo",
+    "body": "",
     "features": [
-      {
-        "ico": "ð¯",
-        "title": "DiagnÃ³stico personalizado",
-        "desc": "Identificamos exactamente quÃ© bloqueos te estÃ¡n frenando"
-      },
-      {
-        "ico": "ð§ ",
-        "title": "Claridad mental total",
-        "desc": "Elimina el ruido interior y toma decisiones desde la confianza"
-      },
-      {
-        "ico": "â¡",
-        "title": "AcciÃ³n inmediata",
-        "desc": "Plan de acciÃ³n concreto adaptado a tu realidad y objetivos"
-      },
-      {
-        "ico": "ð",
-        "title": "AcompaÃ±amiento total",
-        "desc": "Soporte continuo durante todo el proceso de transformaciÃ³n"
-      }
+      { "ico": "🎯", "title": "Diagnóstico personalizado", "desc": "Identificamos con precisión qué bloqueos te están frenando y qué recursos personales puedes potenciar." },
+      { "ico": "🧘", "title": "Claridad mental y plena atención", "desc": "Escucha tu voz interior y toma decisiones desde la confianza y el equilibrio emocional." },
+      { "ico": "⚡", "title": "Acción inmediata", "desc": "Plan de acción adaptado a tu realidad, objetivos y propósito de vida. Paso a paso, cada persona necesita su tiempo." },
+      { "ico": "🤝", "title": "Acompañamiento continuo", "desc": "Soporte durante todo tu proceso de transformación. Nunca te vas a sentir solo." }
     ]
   },
   "pasos": {
     "label": "El proceso",
-    "h2": "3 pasos para tus primeros resultados",
+    "h2": "3 pasos para guiar tu proceso de transformación",
     "items": [
-      {
-        "title": "AnÃ¡lisis gratuito",
-        "desc": "Hablamos 30 minutos para entender tu situaciÃ³n y quÃ© bloqueos especÃ­ficos estÃ¡n frenando tu avance. Sin juicios."
-      },
-      {
-        "title": "Estrategia a medida",
-        "desc": "DiseÃ±amos juntos un plan de transformaciÃ³n basado en PNL, constelaciones y anÃ¡lisis transgeneracional adaptado a ti."
-      },
-      {
-        "title": "ImplementaciÃ³n y escalado",
-        "desc": "AcompaÃ±amiento durante las 5 sesiones para que tomes acciÃ³n desde la claridad y la confianza real."
-      }
+      { "title": "Análisis gratuito", "desc": "Hablamos 30 minutos para conocer tus necesidades y los factores que están frenando tu expansión. Sin juicios de valor." },
+      { "title": "Estrategia a medida", "desc": "Una vez iniciado el proceso, diseñamos un plan de transformación con el apoyo de distintas técnicas y recursos de autoconocimiento, crecimiento personal y terapéuticas.", "techniques": ["Diseño numérico evolutivo", "Recursos simbólicos y técnicas de PNL", "Mapa multidimensional", "Análisis transgeneracional y estudio del árbol genealógico", "Sistema de creencias y patrones de comportamiento", "Anamnesis personal y familiar", "Constelaciones personales y profesionales", "Testaje"] },
+      { "title": "Implementación y escalado", "desc": "Estamos en contacto permanente durante las 5 sesiones para que actúes desde la claridad, la confianza real y la plena atención." }
     ]
   },
   "para_quien": {
-    "label": "Para quiÃ©n es",
+    "label": "Para quién es",
     "h2": "Esto es perfecto para ti si...",
     "yes": [
-      {
-        "text": "Tienes un proyecto pero no avanza como deberÃ­a"
-      },
-      {
-        "text": "EstÃ¡s listo para trabajar tus bloqueos internos de verdad"
-      },
-      {
-        "text": "Quieres resultados concretos, no mÃ¡s teorÃ­a"
-      },
-      {
-        "text": "Buscas acompaÃ±amiento personalizado y cercano"
-      },
-      {
-        "text": "EstÃ¡s dispuesto a comprometerte con el proceso"
-      }
+      { "text": "Tienes un proyecto, pero no avanza como debería." },
+      { "text": "Te sientes preparado para enfrentar tus bloqueos y creencias limitantes." },
+      { "text": "Quieres resultados concretos, no más teoría." },
+      { "text": "Buscas un acompañamiento personalizado, profesional y cercano." },
+      { "text": "Estás dispuesto a comprometerte plenamente con tu proceso." }
     ],
     "no": [
-      {
-        "text": "Buscas resultados mÃ¡gicos sin ningÃºn esfuerzo"
-      },
-      {
-        "text": "No crees que tus bloqueos puedan ser internos"
-      },
-      {
-        "text": "No tienes tiempo ni ganas de dedicarle al proceso"
-      },
-      {
-        "text": "Solo buscas estrategias de marketing externas"
-      },
-      {
-        "text": "Ya tienes todo resuelto y no necesitas ayuda"
-      }
+      { "text": "Buscas resultados mágicos sin ningún esfuerzo." },
+      { "text": "No crees que tus bloqueos puedan ser internos." },
+      { "text": "No puedes dedicarle el tiempo necesario al proceso." },
+      { "text": "Solo buscas estrategias de marketing externas." },
+      { "text": "Ya tienes todo resuelto y no necesitas mi acompañamiento." }
     ]
   },
   "testimonios": {
-    "label": "Casos de Ã©xito",
-    "h2": "Resultados que hablan por sÃ­ solos",
+    "label": "Casos de éxito",
+    "h2": "Resultados que hablan por sí solos",
     "items": [
-      {
-        "text": "Llevaba dos aÃ±os con el mismo proyecto sin avanzar. En cinco sesiones entendÃ­ por quÃ©. Hoy tengo clientes, claridad y, sobre todo, confianza.",
-        "name": "MarÃ­a G.",
-        "role": "Consultora de marketing",
-        "initial": "M"
-      },
-      {
-        "text": "Nunca pensÃ© que mis bloqueos empresariales venÃ­an de tan atrÃ¡s. El anÃ¡lisis transgeneracional me abriÃ³ los ojos completamente.",
-        "name": "Alejandro R.",
-        "role": "Fundador de startup tech",
-        "initial": "A"
-      },
-      {
-        "text": "PasÃ© de paralizarme ante cada decisiÃ³n a tomar acciÃ³n con una claridad que no habÃ­a sentido nunca antes. Totalmente transformador.",
-        "name": "Laura S.",
-        "role": "DiseÃ±adora independiente",
-        "initial": "L"
-      }
+      { "text": "Llevaba dos años con el mismo proyecto sin avanzar. En cinco sesiones entendí por qué. Hoy tengo clientes, claridad y, sobre todo, confianza.", "name": "María G.", "role": "Consultora de marketing", "initial": "M" },
+      { "text": "Nunca pensé que mis bloqueos empresariales venían de tan atrás. El análisis transgeneracional me abrió los ojos completamente.", "name": "Alejandro R.", "role": "Fundador de startup tech", "initial": "A" },
+      { "text": "Pasé de paralizarme ante cada decisión a tomar acción con una claridad que no había sentido nunca antes. Totalmente transformador.", "name": "Laura S.", "role": "Diseñadora independiente", "initial": "L" }
     ]
   },
   "garantia": {
-    "ico": "ð¡ï¸",
-    "h2": "Nuestra garantÃ­a es tu tranquilidad",
-    "body": "Si en la sesiÃ³n gratuita de diagnÃ³stico no sientes que este proceso es para ti, simplemente no seguimos. Sin presiones, sin compromisos, sin coste. Tu tiempo es valioso y lo respetamos."
+    "ico": "🛡️",
+    "h2": "Nuestra garantía es tu tranquilidad",
+    "body": "Si en la sesión gratuita de diagnóstico no sientes que este proceso es para ti, simplemente no seguimos. Sin presiones, sin compromisos, sin coste. Tu tiempo es valioso y lo respetamos."
   },
   "cta": {
-    "h2_line1": "Â¿Listo para impulsar",
+    "h2_line1": "¿Listo para impulsar",
     "h2_line2": "tu proyecto de verdad?",
-    "body": "El primer paso cuesta cero euros y cero compromisos. Solo una conversaciÃ³n honesta para ver si podemos avanzar juntos.",
-    "note": "Sin compromiso Â· Respuesta en menos de 24h"
+    "body": "El primer paso cuesta cero euros y cero compromisos. Solo una conversación honesta para ver si podemos avanzar juntos.",
+    "note": "Sin compromiso · Respuesta en menos de 24h"
   },
   "footer": {
-    "name": "Tu Nombre â Coach de Emprendedores",
-    "copy": "Â© 2025 Â· Todos los derechos reservados"
+    "name": "Tu Nombre — Coach de Emprendedores",
+    "copy": "© 2025 · Todos los derechos reservados"
   }
 }
