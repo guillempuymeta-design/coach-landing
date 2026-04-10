@@ -247,8 +247,56 @@
         }
         .form-note svg { width: 12px; height: 12px; color: var(--acc); flex-shrink: 0; }
 
-        .success { display: none; text-align: center; padding: 36px 0; }
-        .success.show { display: block; }
+        /* ── FORM STEPS ── */
+        .form-step { display: none; }
+        .form-step.active { display: block; animation: fadeUp 0.4s ease; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: none; }
+        }
+
+        .form-progress { max-width: 200px; margin: 0 auto 24px; position: relative; }
+        .form-progress-bar {
+            position: absolute; top: 50%; left: 0; height: 3px; background: var(--acc);
+            transform: translateY(-50%); transition: width 0.4s ease; width: 0%;
+            border-radius: 3px;
+        }
+        .form-progress::before {
+            content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3px;
+            background: var(--border); transform: translateY(-50%); border-radius: 3px;
+        }
+        .form-progress-steps {
+            position: relative; display: flex; justify-content: space-between;
+        }
+        .fp-step {
+            width: 30px; height: 30px; border-radius: 50%;
+            background: var(--bg); border: 2px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.72rem; font-weight: 800; color: var(--gray);
+            transition: all 0.3s ease; z-index: 1;
+        }
+        .fp-step.active { border-color: var(--acc); color: var(--acc); }
+        .fp-step.done { background: var(--acc); border-color: var(--acc); color: #fff; }
+
+        /* ── OPTION BUTTONS ── */
+        .option-list { display: flex; flex-direction: column; gap: 10px; }
+        .option-btn {
+            display: flex; align-items: center; gap: 14px;
+            width: 100%; padding: 16px 18px; text-align: left;
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 13px; cursor: pointer;
+            font-family: var(--fb); font-size: 0.88rem; color: var(--white);
+            transition: all 0.22s ease;
+        }
+        .option-btn:hover {
+            border-color: var(--acc); transform: translateX(4px);
+            box-shadow: 0 4px 16px rgba(26,58,107,0.08);
+        }
+        .option-btn.selected {
+            border-color: var(--acc); background: rgba(26,58,107,0.06);
+        }
+        .option-ico { font-size: 1.2rem; flex-shrink: 0; }
+        .option-text { line-height: 1.45; }
         .s-ring {
             width: 54px; height: 54px; border-radius: 50%;
             background: rgba(26,58,107,0.08); border: 1px solid rgba(26,58,107,0.2);
@@ -483,36 +531,74 @@
 <!-- ████ PASO 2 ████ -->
 <section id="paso2">
     <div class="wrap">
-        <div class="paso-badge anim" id="paso2-badge">Paso 2: Habla con nosotros</div>
-        <h2 class="paso2-h2 anim d1" id="paso2-h2">Empieza con tus datos de contacto</h2>
-        <p class="paso2-sub anim d2" id="paso2-sub">Rellena el formulario y te contactamos en menos de 24h</p>
+        <div class="paso-badge anim" id="paso2-badge">Tu primer paso</div>
+
+        <!-- PROGRESS BAR -->
+        <div class="form-progress anim d1">
+            <div class="form-progress-bar" id="form-progress-bar"></div>
+            <div class="form-progress-steps">
+                <span class="fp-step active" data-step="1">1</span>
+                <span class="fp-step" data-step="2">2</span>
+            </div>
+        </div>
 
         <div class="form-card anim sc d2">
-            <form id="main-form" novalidate>
-                <div class="fgroup">
-                    <label class="flabel" for="nombre">Nombre completo</label>
-                    <input class="finput" type="text" id="nombre" name="nombre" placeholder="Tu nombre y apellidos" required>
-                </div>
-                <div class="fgroup">
-                    <label class="flabel" for="email">Email</label>
-                    <input class="finput" type="email" id="email" name="email" placeholder="tu@email.com" required>
-                </div>
-                <div class="fgroup">
-                    <label class="flabel" for="tel">Teléfono</label>
-                    <input class="finput" type="tel" id="tel" name="tel" placeholder="+34 600 000 000" required>
-                </div>
-                <div class="fsubmit">
-                    <button type="submit" class="btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        Reservar mi sesión gratuita
+            <!-- STEP 1: Motivation question -->
+            <div class="form-step active" id="fstep-1">
+                <h2 class="paso2-h2" id="paso2-h2">¿Por qué quieres iniciar este proceso?</h2>
+                <p class="paso2-sub" id="paso2-sub">Selecciona la opción que mejor te represente</p>
+                <div class="option-list" id="option-list">
+                    <button type="button" class="option-btn" data-value="impulsar">
+                        <span class="option-ico">🚀</span>
+                        <span class="option-text">Quiero impulsar mi proyecto</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="bloqueos">
+                        <span class="option-ico">🔓</span>
+                        <span class="option-text">Quiero identificar los bloqueos que limitan mi expansión personal y mi proyecto</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="exito">
+                        <span class="option-ico">🌱</span>
+                        <span class="option-text">Quiero construir un proyecto de éxito y de largo recorrido, que me aporte bienestar y prosperidad</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="otro">
+                        <span class="option-ico">💬</span>
+                        <span class="option-text">Otro motivo — lo comento en la sesión</span>
                     </button>
                 </div>
-                <div class="form-note">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Sin compromiso · Tus datos están seguros
-                </div>
-            </form>
-            <div class="success" id="success-msg">
+            </div>
+
+            <!-- STEP 2: Contact info -->
+            <div class="form-step" id="fstep-2">
+                <h2 class="paso2-h2">Perfecto. ¿Cómo te contactamos?</h2>
+                <p class="paso2-sub">Rellena tus datos y te escribimos en menos de 24h</p>
+                <form id="main-form" novalidate>
+                    <div class="fgroup">
+                        <label class="flabel" for="nombre">Nombre completo</label>
+                        <input class="finput" type="text" id="nombre" name="nombre" placeholder="Tu nombre y apellidos" required>
+                    </div>
+                    <div class="fgroup">
+                        <label class="flabel" for="email">Email</label>
+                        <input class="finput" type="email" id="email" name="email" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="fgroup">
+                        <label class="flabel" for="tel">Teléfono</label>
+                        <input class="finput" type="tel" id="tel" name="tel" placeholder="+34 600 000 000" required>
+                    </div>
+                    <div class="fsubmit">
+                        <button type="submit" class="btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            Reservar mi sesión gratuita
+                        </button>
+                    </div>
+                    <div class="form-note">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Sin compromiso · Tus datos están seguros
+                    </div>
+                </form>
+            </div>
+
+            <!-- SUCCESS -->
+            <div class="form-step" id="success-msg">
                 <div class="s-ring">✓</div>
                 <div class="s-title">¡Gracias!</div>
                 <p class="s-msg">Me pondré en contacto contigo en menos de 24 horas</p>
@@ -849,7 +935,27 @@ document.querySelectorAll('.anim').forEach(el => obs.observe(el));
 document.querySelectorAll('#hero .anim').forEach((el,i) => setTimeout(() => el.classList.add('in'), 80 + i*120));
 }
 
-/* FORM */
+/* FORM STEPS */
+let selectedMotivation = '';
+
+document.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+        selectedMotivation = this.dataset.value;
+        // Transition to step 2 after brief delay
+        setTimeout(() => {
+            document.getElementById('fstep-1').classList.remove('active');
+            document.getElementById('fstep-2').classList.add('active');
+            document.querySelector('.fp-step[data-step="1"]').classList.remove('active');
+            document.querySelector('.fp-step[data-step="1"]').classList.add('done');
+            document.querySelector('.fp-step[data-step="2"]').classList.add('active');
+            document.getElementById('form-progress-bar').style.width = '100%';
+            document.getElementById('nombre').focus();
+        }, 350);
+    });
+});
+
 document.getElementById('main-form').addEventListener('submit', function(e) {
     e.preventDefault();
     if (!document.getElementById('nombre').value.trim() ||
@@ -858,8 +964,10 @@ document.getElementById('main-form').addEventListener('submit', function(e) {
     const btn = this.querySelector('button[type=submit]');
     btn.textContent = 'Enviando...'; btn.disabled = true;
     setTimeout(() => {
-        this.style.display = 'none';
-        document.getElementById('success-msg').classList.add('show');
+        document.getElementById('fstep-2').classList.remove('active');
+        document.getElementById('success-msg').classList.add('active');
+        document.querySelector('.fp-step[data-step="2"]').classList.remove('active');
+        document.querySelector('.fp-step[data-step="2"]').classList.add('done');
     }, 700);
 });
 
