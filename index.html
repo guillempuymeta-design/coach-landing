@@ -145,7 +145,7 @@
         .hero-sub {
             font-size: clamp(0.93rem, 2.6vw, 1.05rem);
             color: var(--gray); line-height: 1.72;
-            margin: 0 auto 28px; max-width: 500px;
+            margin: 0 auto 28px; max-width: 640px;
         }
 
         /* VSL */
@@ -514,18 +514,19 @@
             <span id="hero-h1-1">Impulsar tus proyectos</span><br>con <em id="hero-h1-2">confianza y sin creencias limitantes</em>
         </h1>
         <p class="hero-sub anim d3" id="hero-sub">
-            Te acompaño en tu viaje de autoconocimiento para que expreses todo tu potencial y talentos. Sin miedos. Sin dudas. Juntos diseñaremos la mejor estrategia para que avances hacia el éxito desde una nueva consciencia.
+            Te acompaño en tu viaje de autoconocimiento para que expreses todo tu potencial creador y talentos. Sin miedos. Sin dudas. Juntos diseñaremos la mejor estrategia para que avances hacia el éxito desde una nueva consciencia.
         </p>
 
         <!-- VSL -->
         <div class="vsl-wrap anim sc d3">
             <div class="vsl-box">
-                <div class="vsl-inner">
-                    <div class="vsl-play">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                    <span class="vsl-lbl">Ver presentación — próximamente</span>
-                </div>
+                <iframe
+                    src="https://player.vimeo.com/video/1195329883?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                    title="ANTONI PARIS"></iframe>
             </div>
         </div>
     </div>
@@ -540,7 +541,7 @@
 <!-- ████ PASO 2 ████ -->
 <section id="paso2">
     <div class="wrap">
-        <div class="paso-badge anim" id="paso2-badge">Tu primer paso</div>
+        <div class="paso-badge anim" id="paso2-badge">Habla conmigo</div>
 
         <!-- PROGRESS BAR -->
         <div class="form-progress anim d1">
@@ -548,6 +549,8 @@
             <div class="form-progress-steps">
                 <span class="fp-step active" data-step="1">1</span>
                 <span class="fp-step" data-step="2">2</span>
+                <span class="fp-step" data-step="3">3</span>
+                <span class="fp-step" data-step="4">4</span>
             </div>
         </div>
 
@@ -583,8 +586,66 @@
                 </div>
             </div>
 
-            <!-- STEP 2: Contact info -->
+            <!-- STEP 2: ¿En qué punto estás? -->
             <div class="form-step" id="fstep-2">
+                <h2 class="paso2-h2">¿En qué punto estás?</h2>
+                <p class="paso2-sub">Selecciona la opción que mejor te represente</p>
+                <div class="option-list" id="option-list-punto">
+                    <button type="button" class="option-btn option-single" data-group="punto" data-value="idea">
+                        <span class="option-check"></span>
+                        <span class="option-text">Idea inicial</span>
+                    </button>
+                    <button type="button" class="option-btn option-single" data-group="punto" data-value="en_marcha">
+                        <span class="option-check"></span>
+                        <span class="option-text">Proyecto en marcha</span>
+                    </button>
+                    <button type="button" class="option-btn option-single" data-group="punto" data-value="estancado">
+                        <span class="option-check"></span>
+                        <span class="option-text">Proyecto estancado</span>
+                    </button>
+                    <button type="button" class="option-btn option-single" data-group="punto" data-value="creciendo">
+                        <span class="option-check"></span>
+                        <span class="option-text">Proyecto creciendo</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: ¿Qué necesitas? -->
+            <div class="form-step" id="fstep-3">
+                <h2 class="paso2-h2">¿Qué necesitas ahora mismo?</h2>
+                <p class="paso2-sub">Puedes seleccionar más de una opción</p>
+                <div class="option-list" id="option-list-necesidad">
+                    <button type="button" class="option-btn option-multi" data-group="necesidad" data-value="claridad">
+                        <span class="option-check"></span>
+                        <span class="option-text">Claridad</span>
+                    </button>
+                    <button type="button" class="option-btn option-multi" data-group="necesidad" data-value="estrategia">
+                        <span class="option-check"></span>
+                        <span class="option-text">Estrategia</span>
+                    </button>
+                    <button type="button" class="option-btn option-multi" data-group="necesidad" data-value="accion">
+                        <span class="option-check"></span>
+                        <span class="option-text">Acción</span>
+                    </button>
+                    <button type="button" class="option-btn option-multi" data-group="necesidad" data-value="desbloqueo">
+                        <span class="option-check"></span>
+                        <span class="option-text">Desbloqueo personal</span>
+                    </button>
+                    <button type="button" class="option-btn option-multi" data-group="necesidad" data-value="escalar">
+                        <span class="option-check"></span>
+                        <span class="option-text">Escalar ingresos</span>
+                    </button>
+                </div>
+                <div class="fsubmit" id="step3-continue" style="display:none;margin-top:18px;">
+                    <button type="button" class="btn" id="btn-continue-3">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        Continuar
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 4: Contact info -->
+            <div class="form-step" id="fstep-4">
                 <h2 class="paso2-h2">Perfecto. ¿Cómo te contactamos?</h2>
                 <p class="paso2-sub">Rellena tus datos y te escribimos en menos de 24h</p>
                 <form id="main-form" novalidate>
@@ -627,7 +688,7 @@
 <section id="sistema">
     <div class="wrap">
         <p class="sec-label anim" id="sistema-label">Lo que conseguirás</p>
-        <h2 class="sec-h2 anim d1" id="sistema-h2">Un sistema diseñado para<br><em>emprendedores y líderes de equipo</em></h2>
+        <h2 class="sec-h2 anim d1" id="sistema-h2">Un sistema diseñado para estimular tu capacidad de<br><em>emprendimiento y/o de liderar equipos humanos</em></h2>
 
         <div class="features" id="features">
             <div class="feat anim fl d1">
@@ -646,6 +707,11 @@
                 <div class="feat-ico">🤝</div>
                 <div><div class="feat-title">Acompañamiento continuo</div><div class="feat-desc">Soporte durante todo tu proceso de transformación. Nunca te vas a sentir solo.</div></div>
             </div>
+        </div>
+
+        <div class="techniques-box anim d2" style="margin-top:28px;">
+            <p class="techniques-label">Técnicas innovadoras</p>
+            <p style="font-size:0.82rem;color:var(--gray);line-height:1.6;">Distintas técnicas y recursos científicos y de expansión de la consciencia a tu disposición para profundizar en tu autoconocimiento.</p>
         </div>
     </div>
 </section>
@@ -683,7 +749,7 @@
             </div>
             <div class="step anim fl d3">
                 <div class="step-n">03</div>
-                <div><div class="step-title">Implementación y escalado</div><p class="step-desc">Estamos en contacto permanente durante las 5 sesiones para que actúes desde la claridad, la confianza real y la plena atención.</p></div>
+                <div><div class="step-title">Implementación y escalado</div><p class="step-desc">Estamos en contacto permanente durante las 5 sesiones de acompañamiento en directo para que actúes desde la claridad, la confianza real y la plena atención.</p></div>
             </div>
         </div>
 
@@ -727,70 +793,22 @@
     </div>
 </section>
 
-<!-- ████ TESTIMONIOS ████ -->
-<section id="testimonios">
-    <div class="wrap">
-        <p class="sec-label anim" id="testi-label">Casos de éxito</p>
-        <h2 class="sec-h2 anim d1" id="testi-h2">Resultados que hablan<br>por sí solos</h2>
-
-        <div class="testi-list" id="testi-list">
-            <div class="testi anim sc d1">
-                <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <p class="testi-text">"Llevaba dos años con el mismo proyecto sin avanzar. En cinco sesiones entendí por qué. Hoy tengo clientes, claridad y, sobre todo, confianza."</p>
-                <div class="testi-who"><div class="testi-av">M</div><div><div class="testi-name">María G.</div><div class="testi-role">Consultora de marketing</div></div></div>
-            </div>
-            <div class="testi anim sc d2">
-                <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <p class="testi-text">"Nunca pensé que mis bloqueos empresariales venían de tan atrás. El análisis transgeneracional me abrió los ojos completamente."</p>
-                <div class="testi-who"><div class="testi-av">A</div><div><div class="testi-name">Alejandro R.</div><div class="testi-role">Fundador de startup tech</div></div></div>
-            </div>
-            <div class="testi anim sc d3">
-                <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <p class="testi-text">"Pasé de paralizarme ante cada decisión a tomar acción con una claridad que no había sentido nunca antes. Totalmente transformador."</p>
-                <div class="testi-who"><div class="testi-av">L</div><div><div class="testi-name">Laura S.</div><div class="testi-role">Diseñadora independiente</div></div></div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- ████ GARANTÍA ████ -->
 <section id="garantia">
-    <div class="wrap">
-        <div class="garantia-ico anim" id="garantia-ico">🛡️</div>
-        <h2 class="garantia-h2 anim d1" id="garantia-h2">Nuestra garantía es<br><em>tu tranquilidad</em></h2>
-        <p class="garantia-body anim d2" id="garantia-body">Si en la sesión gratuita de diagnóstico no sientes que este proceso es para ti, simplemente no seguimos. Sin presiones, sin compromisos, sin coste. Tu tiempo es valioso y lo respetamos.</p>
-        <div class="anim d3" style="max-width:420px;margin:0 auto;">
+    <div class="wrap" style="text-align:center;">
+        <div class="garantia-ico anim">🛡️</div>
+        <h2 class="garantia-h2 anim d1">Mi garantía es<br><em>tu tranquilidad</em></h2>
+        <p class="garantia-body anim d2">Si en la sesión de análisis no sientes que este proceso sea para ti, simplemente no seguimos. Sin presiones, sin compromisos, sin coste alguno. Tu tiempo es valioso y lo respeto.</p>
+        <p class="garantia-body anim d3">Si, en cambio, decides llevarlo a cabo, juntos vamos a realizar un viaje intenso y productivo, que te llevará de un nivel de consciencia a uno nuevo mucho más en sintonía con tu propósito de vida. <strong>Eres un creador. Atrévete.</strong></p>
+        <div class="anim d4" style="max-width:420px;margin:24px auto 0;">
             <a href="#paso2" class="btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                Reserva tu análisis gratuito
+                Reserva tu sesión de análisis
             </a>
         </div>
     </div>
 </section>
 
-<!-- ████ CTA FINAL ████ -->
-<section id="cta-final">
-    <div class="cta-glow"></div>
-    <div class="wrap">
-        <h2 class="cta-h2 anim"><span id="cta-h2-1">¿Listo para impulsar</span><br><em id="cta-h2-2">tu proyecto de verdad?</em></h2>
-        <p class="cta-body anim d1" id="cta-body">El primer paso cuesta cero euros y cero compromisos. Solo una conversación honesta para ver si podemos avanzar juntos.</p>
-
-        <div class="cta-box anim d2">
-            <a href="#paso2" class="btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                Quiero una sesión gratuita de diagnóstico
-            </a>
-            <div class="trust-row">
-                <div class="av-row">
-                    <div class="av">M</div><div class="av">A</div>
-                    <div class="av">L</div><div class="av">+</div>
-                </div>
-                <span>+200 emprendedores ya han dado el paso</span>
-            </div>
-            <p class="cta-note" id="cta-note">Sin compromiso · Respuesta en menos de 24h</p>
-        </div>
-    </div>
-</section>
 
 <!-- ████ FOOTER ████ -->
 <footer>
@@ -952,9 +970,22 @@ document.querySelectorAll('#hero .anim').forEach((el,i) => setTimeout(() => el.c
 }
 
 /* FORM STEPS */
+const totalSteps = 4;
 let selectedMotivations = [];
+let selectedPunto = '';
+let selectedNecesidades = [];
 
-document.querySelectorAll('.option-btn').forEach(btn => {
+function goToStep(from, to) {
+    document.getElementById('fstep-' + from).classList.remove('active');
+    document.getElementById('fstep-' + to).classList.add('active');
+    document.querySelector('.fp-step[data-step="' + from + '"]').classList.remove('active');
+    document.querySelector('.fp-step[data-step="' + from + '"]').classList.add('done');
+    document.querySelector('.fp-step[data-step="' + to + '"]').classList.add('active');
+    document.getElementById('form-progress-bar').style.width = ((to - 1) / (totalSteps - 1) * 100) + '%';
+}
+
+// STEP 1: Motivations (multi-select)
+document.querySelectorAll('#option-list .option-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         this.classList.toggle('selected');
         const val = this.dataset.value;
@@ -963,28 +994,51 @@ document.querySelectorAll('.option-btn').forEach(btn => {
         } else {
             selectedMotivations = selectedMotivations.filter(v => v !== val);
         }
-        // Show/hide "otro" textarea
         const otroInput = document.getElementById('otro-motivo');
         if (val === 'otro') {
             otroInput.style.display = this.classList.contains('selected') ? 'block' : 'none';
             if (this.classList.contains('selected')) otroInput.focus();
         }
-        // Show/hide continue button
         document.getElementById('step1-continue').style.display =
             selectedMotivations.length > 0 ? 'block' : 'none';
     });
 });
 
 document.getElementById('btn-continue').addEventListener('click', function() {
-    document.getElementById('fstep-1').classList.remove('active');
-    document.getElementById('fstep-2').classList.add('active');
-    document.querySelector('.fp-step[data-step="1"]').classList.remove('active');
-    document.querySelector('.fp-step[data-step="1"]').classList.add('done');
-    document.querySelector('.fp-step[data-step="2"]').classList.add('active');
-    document.getElementById('form-progress-bar').style.width = '100%';
+    goToStep(1, 2);
+});
+
+// STEP 2: ¿En qué punto estás? (single-select, auto-advance)
+document.querySelectorAll('#option-list-punto .option-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('#option-list-punto .option-btn').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+        selectedPunto = this.dataset.value;
+        setTimeout(() => goToStep(2, 3), 350);
+    });
+});
+
+// STEP 3: ¿Qué necesitas? (multi-select)
+document.querySelectorAll('#option-list-necesidad .option-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        this.classList.toggle('selected');
+        const val = this.dataset.value;
+        if (this.classList.contains('selected')) {
+            if (!selectedNecesidades.includes(val)) selectedNecesidades.push(val);
+        } else {
+            selectedNecesidades = selectedNecesidades.filter(v => v !== val);
+        }
+        document.getElementById('step3-continue').style.display =
+            selectedNecesidades.length > 0 ? 'block' : 'none';
+    });
+});
+
+document.getElementById('btn-continue-3').addEventListener('click', function() {
+    goToStep(3, 4);
     document.getElementById('nombre').focus();
 });
 
+// STEP 4: Contact form
 document.getElementById('main-form').addEventListener('submit', function(e) {
     e.preventDefault();
     if (!document.getElementById('nombre').value.trim() ||
@@ -993,10 +1047,10 @@ document.getElementById('main-form').addEventListener('submit', function(e) {
     const btn = this.querySelector('button[type=submit]');
     btn.textContent = 'Enviando...'; btn.disabled = true;
     setTimeout(() => {
-        document.getElementById('fstep-2').classList.remove('active');
+        document.getElementById('fstep-4').classList.remove('active');
         document.getElementById('success-msg').classList.add('active');
-        document.querySelector('.fp-step[data-step="2"]').classList.remove('active');
-        document.querySelector('.fp-step[data-step="2"]').classList.add('done');
+        document.querySelector('.fp-step[data-step="4"]').classList.remove('active');
+        document.querySelector('.fp-step[data-step="4"]').classList.add('done');
     }, 700);
 });
 
@@ -1008,5 +1062,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     });
 });
 </script>
+<script src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>

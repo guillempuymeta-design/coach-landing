@@ -3,17 +3,17 @@
     "tag": "Sesión gratuita disponible",
     "pre": "Descubre el sistema que te permite",
     "h1_line1": "Impulsar tus proyectos",
-    "h1_line2": "con confianza y sin creencias limitantes",
-    "sub": "Te acompaño en tu viaje de autoconocimiento para que expreses todo tu potencial y talentos. Sin miedos. Sin dudas. Juntos diseñaremos la mejor estrategia para que avances hacia el éxito desde una nueva consciencia."
+    "h1_line2": "confianza y sin creencias limitantes",
+    "sub": "Te acompaño en tu viaje de autoconocimiento para que expreses todo tu potencial creador y talentos. Sin miedos. Sin dudas. Juntos diseñaremos la mejor estrategia para que avances hacia el éxito desde una nueva consciencia."
   },
   "paso2": {
-    "badge": "Paso 2: Habla con nosotros",
+    "badge": "Habla conmigo",
     "h2": "Empieza con tus datos de contacto",
     "sub": "Rellena el formulario y te contactamos en menos de 24h"
   },
   "sistema": {
     "label": "Lo que conseguirás",
-    "h2": "Un sistema diseñado para emprendedores y líderes de equipo",
+    "h2": "Un sistema diseñado para estimular tu capacidad de emprendimiento y/o de liderar equipos humanos",
     "body": "",
     "features": [
       { "ico": "🎯", "title": "Diagnóstico personalizado", "desc": "Identificamos con precisión qué bloqueos te están frenando y qué recursos personales puedes potenciar." },
@@ -28,7 +28,7 @@
     "items": [
       { "title": "Análisis gratuito", "desc": "Hablamos 30 minutos para conocer tus necesidades y los factores que están frenando tu expansión. Sin juicios de valor." },
       { "title": "Estrategia a medida", "desc": "Una vez iniciado el proceso, diseñamos un plan de transformación con el apoyo de distintas técnicas y recursos de autoconocimiento, crecimiento personal y terapéuticas.", "techniques": ["Diseño numérico evolutivo", "Recursos simbólicos y técnicas de PNL", "Mapa multidimensional", "Análisis transgeneracional y estudio del árbol genealógico", "Sistema de creencias y patrones de comportamiento", "Anamnesis personal y familiar", "Constelaciones personales y profesionales", "Testaje"] },
-      { "title": "Implementación y escalado", "desc": "Estamos en contacto permanente durante las 5 sesiones para que actúes desde la claridad, la confianza real y la plena atención." }
+      { "title": "Implementación y escalado", "desc": "Estamos en contacto permanente durante las 5 sesiones de acompañamiento en directo para que actúes desde la claridad, la confianza real y la plena atención." }
     ]
   },
   "para_quien": {
