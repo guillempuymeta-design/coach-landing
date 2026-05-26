@@ -7,6 +7,22 @@
     <meta property="og:title" content="¿Sientes que tu proyecto puede ir mucho más lejos?">
     <title>Coach de Emprendedores — Sesión Gratuita</title>
 
+    <!-- Meta Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1000558072424026');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1000558072424026&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
@@ -817,6 +833,29 @@
 </footer>
 
 <script>
+/* META TRACKING (Pixel + CAPI dedup) */
+window.metaTrack = function(eventName, customData, userData) {
+  const eventId = (crypto.randomUUID ? crypto.randomUUID() : Date.now()+'-'+Math.random().toString(36).slice(2));
+  customData = customData || {};
+  userData = userData || {};
+  try { fbq('track', eventName, customData, {eventID: eventId}); } catch(e){}
+  const fbp = (document.cookie.match(/_fbp=([^;]+)/)||[])[1];
+  const fbc = (document.cookie.match(/_fbc=([^;]+)/)||[])[1];
+  fetch('/api/meta-capi', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    keepalive: true,
+    body: JSON.stringify({
+      event_name: eventName,
+      event_id: eventId,
+      event_source_url: location.href,
+      custom_data: customData,
+      user_data: Object.assign({fbp, fbc}, userData)
+    })
+  }).catch(()=>{});
+};
+window.metaTrack('PageView');
+
 /* LOAD DESIGN TOKENS */
 fetch('/design.json')
   .then(r => r.json())
@@ -982,6 +1021,9 @@ function goToStep(from, to) {
     document.querySelector('.fp-step[data-step="' + from + '"]').classList.add('done');
     document.querySelector('.fp-step[data-step="' + to + '"]').classList.add('active');
     document.getElementById('form-progress-bar').style.width = ((to - 1) / (totalSteps - 1) * 100) + '%';
+    if (window.metaTrack && to > from) {
+        window.metaTrack('FunnelStep_' + from, {step: from, motivations: selectedMotivations, punto: selectedPunto, necesidades: selectedNecesidades});
+    }
 }
 
 // STEP 1: Motivations (multi-select)
@@ -1041,11 +1083,19 @@ document.getElementById('btn-continue-3').addEventListener('click', function() {
 // STEP 4: Contact form
 document.getElementById('main-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    if (!document.getElementById('nombre').value.trim() ||
-        !document.getElementById('email').value.trim() ||
-        !document.getElementById('tel').value.trim()) return;
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const tel = document.getElementById('tel').value.trim();
+    if (!nombre || !email || !tel) return;
     const btn = this.querySelector('button[type=submit]');
     btn.textContent = 'Enviando...'; btn.disabled = true;
+    if (window.metaTrack) {
+        const parts = nombre.split(/\s+/);
+        window.metaTrack('Lead',
+            {motivations: selectedMotivations, punto: selectedPunto, necesidades: selectedNecesidades},
+            {em: email.toLowerCase(), ph: tel.replace(/\D/g,''), fn: parts[0], ln: parts.slice(1).join(' ')}
+        );
+    }
     setTimeout(() => {
         document.getElementById('fstep-4').classList.remove('active');
         document.getElementById('success-msg').classList.add('active');
@@ -1063,5 +1113,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 </script>
 <script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+(function(){
+    const iframe = document.querySelector('.vsl-box iframe');
+    if (!iframe || !window.Vimeo) return;
+    const player = new Vimeo.Player(iframe);
+    let fired = false;
+    player.on('play', () => {
+        if (fired || !window.metaTrack) return;
+        fired = true;
+        window.metaTrack('ViewContent', {content_name: 'VSL', content_type: 'video'});
+    });
+})();
+</script>
 </body>
 </html>
