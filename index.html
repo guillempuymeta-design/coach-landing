@@ -1143,6 +1143,19 @@ document.getElementById('main-form').addEventListener('submit', function(e) {
             {em: email.toLowerCase(), ph: tel.replace(/\D/g,''), fn: parts[0], ln: parts.slice(1).join(' ')}
         );
     }
+    fetch('/api/lead-sheet', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        keepalive: true,
+        body: JSON.stringify({
+            nombre, email, tel,
+            motivations: selectedMotivations,
+            otro_motivo: document.getElementById('otro-motivo').value.trim(),
+            punto: selectedPunto,
+            necesidades: selectedNecesidades,
+            source_url: location.href
+        })
+    }).catch(()=>{});
     const waUrl = buildWhatsAppURL({nombre, email, tel});
     document.getElementById('wa-fallback').href = waUrl;
     setTimeout(() => {
