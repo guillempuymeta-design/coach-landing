@@ -1109,23 +1109,8 @@ const NECES_LABELS = {
     escalar: 'Escalar ingresos'
 };
 
-function buildWhatsAppURL({nombre, email, tel}) {
-    const motivLines = selectedMotivations.map(v => '• ' + (MOTIV_LABELS[v] || v));
-    const otroTxt = document.getElementById('otro-motivo').value.trim();
-    if (selectedMotivations.includes('otro') && otroTxt) motivLines.push('  ↳ ' + otroTxt);
-    const neces = selectedNecesidades.map(v => NECES_LABELS[v] || v).join(', ');
-    const msg = [
-        `¡Hola Antoni! Soy ${nombre}, vengo de la web y quiero reservar la sesión gratuita.`,
-        '',
-        '*Motivación:*',
-        ...motivLines,
-        '',
-        '*Punto actual:* ' + (PUNTO_LABELS[selectedPunto] || selectedPunto || '—'),
-        '*Necesidad:* ' + (neces || '—'),
-        '',
-        `*Email:* ${email}`,
-        `*Teléfono:* ${tel}`
-    ].join('\n');
+function buildWhatsAppURL({nombre}) {
+    const msg = `¡Hola Antoni! Soy ${nombre}, vengo de la web y quiero reservar la sesión gratuita.`;
     return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 
